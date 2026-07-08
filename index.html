@@ -1,786 +1,1123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Puna Pakihi - Business Support Map | Ngāi Tahu</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puna Pakihi - Business Support Map | Ngāi Tahu</title>
 
-<!-- Favicon: rust circle with single niho triangle -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNiAxNic+PGNpcmNsZSBjeD0nOCcgY3k9JzgnIHI9JzcuNScgZmlsbD0nI2E4NDgyNCcvPjxwb2x5Z29uIHBvaW50cz0nOCwzLjUgMy41LDEyIDEyLjUsMTInIGZpbGw9JyNmN2YyZTknLz48L3N2Zz4=">
+    <!-- Favicon: rust circle with single niho triangle -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNiAxNic+PGNpcmNsZSBjeD0nOCcgY3k9JzgnIHI9JzcuNScgZmlsbD0nI2E4NDgyNCcvPjxwb2x5Z29uIHBvaW50cz0nOCwzLjUgMy41LDEyIDEyLjUsMTInIGZpbGw9JyNmN2YyZTknLz48L3N2Zz4="
+    />
 
-<!-- Open Graph -->
-<meta property="og:title"       content="Puna Pakihi - Business Support Map | Ngāi Tahu">
-<meta property="og:description" content="A directory of business support resources for Māori enterprise.">
-<meta property="og:type"        content="website">
-<meta property="og:url"         content="https://VERCEL_URL_PLACEHOLDER">
-<meta property="og:image"       content="./og-image.png">
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Puna Pakihi - Business Support Map | Ngāi Tahu"
+    />
+    <meta
+      property="og:description"
+      content="A directory of business support resources for Māori enterprise."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://VERCEL_URL_PLACEHOLDER" />
+    <meta property="og:image" content="./og-image.png" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="Puna Pakihi - Business Support Map | Ngāi Tahu">
-<meta name="twitter:description" content="A directory of business support resources for Māori enterprise.">
-<meta name="twitter:image"       content="./og-image.png">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Puna Pakihi - Business Support Map | Ngāi Tahu"
+    />
+    <meta
+      name="twitter:description"
+      content="A directory of business support resources for Māori enterprise."
+    />
+    <meta name="twitter:image" content="./og-image.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<style>
-:root {
-  --rust:  #a84824;
-  --pine:  #3c6c48;
-  --slate: #4f6d82;
-  --ochre: #b8843a;
-  --sage:  #547860;
-  --ink:   #292621;
-  --ink2:  #6b665c;
-  --line:  #b8b0a1;
-  --bone:  #f7f2e9;
-  --zone:  #e4d8cc;
-  --bg:    #f3eee4;
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --rust: #a84824;
+        --pine: #3c6c48;
+        --slate: #4f6d82;
+        --ochre: #b8843a;
+        --sage: #547860;
+        --ink: #292621;
+        --ink2: #6b665c;
+        --line: #b8b0a1;
+        --bone: #f7f2e9;
+        --zone: #e4d8cc;
+        --bg: #f3eee4;
 
-  --col-w: 52px;  /* directory: coin-column width (awa runs through its centre) */
-  --pg:    2rem;  /* page padding each side */
-}
+        --col-w: 52px; /* directory: coin-column width (awa runs through its centre) */
+        --pg: 2rem; /* page padding each side */
+      }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.4;
-  min-height: 100vh;
-}
+      body {
+        font-family:
+          'Inter',
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.4;
+        min-height: 100vh;
+      }
 
-/* ══════════════════════════════════════
+      /* ══════════════════════════════════════
    HEADER
    ══════════════════════════════════════ */
-.site-header { padding: 2.5rem 0 1rem; }
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--pg);
-}
-.header-eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink2);
-  margin-bottom: 0.35rem;
-}
-.site-header h1 {
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.2;
-  max-width: 560px;
-}
+      .site-header {
+        padding: 2.5rem 0 1rem;
+      }
+      .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--pg);
+      }
+      .header-eyebrow {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        margin-bottom: 0.35rem;
+      }
+      .site-header h1 {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.2;
+        max-width: 560px;
+      }
 
-/* ══════════════════════════════════════
+      /* ══════════════════════════════════════
    VIEW TOGGLE
    ══════════════════════════════════════ */
-.view-toggle-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.75rem var(--pg) 1.25rem;
-}
-.view-toggle {
-  display: inline-flex;
-  background: var(--zone);
-  border-radius: 8px;
-  padding: 3px;
-  gap: 2px;
-}
-.toggle-btn {
-  font-family: inherit;
-  font-size: 0.775rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.35rem 1.1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: transparent;
-  color: var(--ink2);
-  transition: background 0.15s, color 0.15s;
-  user-select: none;
-}
-.toggle-btn[aria-pressed="true"] {
-  background: var(--ink);
-  color: var(--bone);
-}
-.toggle-btn[aria-pressed="false"]:hover {
-  background: var(--line);
-  color: var(--ink);
-}
+      .view-toggle-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.75rem var(--pg) 1.25rem;
+      }
+      .view-toggle {
+        display: inline-flex;
+        background: var(--zone);
+        border-radius: 8px;
+        padding: 3px;
+        gap: 2px;
+      }
+      .toggle-btn {
+        font-family: inherit;
+        font-size: 0.775rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 0.35rem 1.1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: transparent;
+        color: var(--ink2);
+        transition:
+          background 0.15s,
+          color 0.15s;
+        user-select: none;
+      }
+      .toggle-btn[aria-pressed='true'] {
+        background: var(--ink);
+        color: var(--bone);
+      }
+      .toggle-btn[aria-pressed='false']:hover {
+        background: var(--line);
+        color: var(--ink);
+      }
 
-/* #map-body: each view mounts its own canvas element — no shared sizing needed */
+      /* #map-body: each view mounts its own canvas element — no shared sizing needed */
 
-/* ══════════════════════════════════════════════════════════
+      /* ══════════════════════════════════════════════════════════
    JOURNEY VIEW CSS
    ══════════════════════════════════════════════════════════ */
 
-/* Canvas */
-.j-canvas {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--pg) 3rem;
-}
+      /* Canvas */
+      .j-canvas {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--pg) 3rem;
+      }
 
-/* Every-stage bar */
-.every-stage-section { margin-bottom: 1.75rem; }
-.every-stage-bar {
-  border: 1.4px solid var(--sage);
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  align-items: center;
-  background: transparent;
-}
-.every-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--bone);
-  border: 1.4px solid var(--sage);
-  border-radius: 13px;
-  padding: 0.22rem 0.65rem 0.22rem 0.4rem;
-  font-size: 0.76rem;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  transition: box-shadow 0.15s, transform 0.15s;
-}
-.every-pill:hover, .every-pill:focus-visible {
-  box-shadow: 0 2px 8px rgba(84,120,96,0.22);
-  transform: translateY(-1px);
-  outline: none;
-}
-.every-pill:focus-visible { border-color: var(--ink); }
-.ep-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.ep-dot.funding    { background: var(--rust);  }
-.ep-dot.mentoring  { background: var(--slate); }
-.ep-dot.capability { background: var(--pine);  }
-.ep-dot.networks   { background: var(--ochre); }
+      /* Every-stage bar */
+      .every-stage-section {
+        margin-bottom: 1.75rem;
+      }
+      .every-stage-bar {
+        border: 1.4px solid var(--sage);
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        align-items: center;
+        background: transparent;
+      }
+      .every-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--bone);
+        border: 1.4px solid var(--sage);
+        border-radius: 13px;
+        padding: 0.22rem 0.65rem 0.22rem 0.4rem;
+        font-size: 0.76rem;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      .every-pill:hover,
+      .every-pill:focus-visible {
+        box-shadow: 0 2px 8px rgba(84, 120, 96, 0.22);
+        transform: translateY(-1px);
+        outline: none;
+      }
+      .every-pill:focus-visible {
+        border-color: var(--ink);
+      }
+      .ep-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .ep-dot.funding {
+        background: var(--rust);
+      }
+      .ep-dot.mentoring {
+        background: var(--slate);
+      }
+      .ep-dot.capability {
+        background: var(--pine);
+      }
+      .ep-dot.networks {
+        background: var(--ochre);
+      }
 
-/* Stages grid: 4 cols, 3 rows */
-.stages-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto auto;
-  position: relative;
-}
-.stage-hdr {
-  grid-row: 1;
-  position: relative;
-  z-index: 1;
-  padding: 1.1rem 0.5rem 0.9rem;
-  text-align: center;
-}
-.col-eyebrow {
-  font-size: 0.5625rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 0.3rem;
-}
-.col-question {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.25;
-}
+      /* Stages grid: 4 cols, 3 rows */
+      .stages-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto auto auto;
+        position: relative;
+      }
+      .stage-hdr {
+        grid-row: 1;
+        position: relative;
+        z-index: 1;
+        padding: 1.1rem 0.5rem 0.9rem;
+        text-align: center;
+      }
+      .col-eyebrow {
+        font-size: 0.5625rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin-bottom: 0.3rem;
+      }
+      .col-question {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.25;
+      }
 
-/* Awa row (row 2) */
-.awa-row {
-  grid-column: 1 / 5;
-  grid-row: 2;
-  position: relative;
-  height: 68px;
-  z-index: 2;
-}
-.awa-bar {
-  position: absolute;
-  left: 0; right: 0;
-  top: calc(50% - 4.5px);
-  height: 9px;
-  background: linear-gradient(to right, #52896a, var(--pine) 45%, #2b5038);
-  border-radius: 5px;
-  z-index: 0;
-  overflow: hidden;
-}
-.awa-coins {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-}
-.stage-coin {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--rust);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 2px 10px rgba(168,72,36,0.35);
-  overflow: hidden;
-}
-.stage-coin svg {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  max-width: 65%;
-}
+      /* Awa row (row 2) */
+      .awa-row {
+        grid-column: 1 / 5;
+        grid-row: 2;
+        position: relative;
+        height: 68px;
+        z-index: 2;
+      }
+      .awa-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(50% - 4.5px);
+        height: 9px;
+        background: linear-gradient(
+          to right,
+          #52896a,
+          var(--pine) 45%,
+          #2b5038
+        );
+        border-radius: 5px;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .awa-coins {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+      }
+      .stage-coin {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--rust);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 2px 10px rgba(168, 72, 36, 0.35);
+        overflow: hidden;
+      }
+      .stage-coin svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        max-width: 65%;
+      }
 
-/* Stage body (row 3) */
-.stage-body {
-  grid-row: 3;
-  position: relative;
-  z-index: 1;
-  padding: 0.25rem 0.75rem 1.25rem;
-}
-.stage-nextstep {
-  font-size: 0.65rem;
-  color: var(--ink2);
-  margin-bottom: 0.45rem;
-  padding: 0.15rem 0 0.15rem 0.55rem;
-  border-left: 2px solid var(--line);
-}
-.nextstep-eyebrow {
-  display: block;
-  font-size: 0.54rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 0.1rem;
-}
+      /* Stage body (row 3) */
+      .stage-body {
+        grid-row: 3;
+        position: relative;
+        z-index: 1;
+        padding: 0.25rem 0.75rem 1.25rem;
+      }
+      .stage-nextstep {
+        font-size: 0.65rem;
+        color: var(--ink2);
+        margin-bottom: 0.45rem;
+        padding: 0.15rem 0 0.15rem 0.55rem;
+        border-left: 2px solid var(--line);
+      }
+      .nextstep-eyebrow {
+        display: block;
+        font-size: 0.54rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin-bottom: 0.1rem;
+      }
 
-/* Journey org list */
-.j-canvas .org-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.org-entry {
-  display: flex;
-  flex-direction: column;
-}
-.org-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.need-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: transform 0.15s, filter 0.15s;
-}
-.need-dot.funding    { background: var(--rust);  }
-.need-dot.mentoring  { background: var(--slate); }
-.need-dot.capability { background: var(--pine);  }
-.need-dot.networks   { background: var(--ochre); }
+      /* Journey org list */
+      .j-canvas .org-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .org-entry {
+        display: flex;
+        flex-direction: column;
+      }
+      .org-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .need-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        transition:
+          transform 0.15s,
+          filter 0.15s;
+      }
+      .need-dot.funding {
+        background: var(--rust);
+      }
+      .need-dot.mentoring {
+        background: var(--slate);
+      }
+      .need-dot.capability {
+        background: var(--pine);
+      }
+      .need-dot.networks {
+        background: var(--ochre);
+      }
 
-.org-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2rem 0.6rem;
-  border-radius: 9px;
-  font-size: 0.74rem;
-  font-weight: 500;
-  color: var(--bone);
-  text-decoration: none;
-  line-height: 1.25;
-  cursor: pointer;
-  transition: box-shadow 0.15s, transform 0.15s, filter 0.15s;
-}
-.org-pill.funding    { background: var(--rust);  }
-.org-pill.mentoring  { background: var(--slate); }
-.org-pill.capability { background: var(--pine);  }
-.org-pill.networks   { background: var(--ochre); }
-.org-item:hover .org-pill,
-.org-item:focus-within .org-pill {
-  box-shadow: 0 3px 10px rgba(41,38,33,0.22);
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-.org-item:hover .need-dot,
-.org-item:focus-within .need-dot {
-  transform: scale(1.3);
-  filter: brightness(1.35);
-}
-.org-pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+      .org-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9px;
+        font-size: 0.74rem;
+        font-weight: 500;
+        color: var(--bone);
+        text-decoration: none;
+        line-height: 1.25;
+        cursor: pointer;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s,
+          filter 0.15s;
+      }
+      .org-pill.funding {
+        background: var(--rust);
+      }
+      .org-pill.mentoring {
+        background: var(--slate);
+      }
+      .org-pill.capability {
+        background: var(--pine);
+      }
+      .org-pill.networks {
+        background: var(--ochre);
+      }
+      .org-item:hover .org-pill,
+      .org-item:focus-within .org-pill {
+        box-shadow: 0 3px 10px rgba(41, 38, 33, 0.22);
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+      }
+      .org-item:hover .need-dot,
+      .org-item:focus-within .need-dot {
+        transform: scale(1.3);
+        filter: brightness(1.35);
+      }
+      .org-pill:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
 
-/* Note tooltip (journey) */
-.org-pill[data-note],
-.every-pill[data-note] { position: relative; }
-.org-pill[data-note]::after,
-.every-pill[data-note]::after {
-  content: attr(data-note);
-  position: absolute;
-  bottom: calc(100% + 6px); left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  background: var(--ink); color: var(--bone);
-  font-size: 0.64rem; font-weight: 400; line-height: 1.4;
-  padding: 0.25rem 0.55rem;
-  border-radius: 5px;
-  pointer-events: none; opacity: 0;
-  transition: opacity 0.12s; z-index: 20;
-}
-.org-pill[data-note]:hover::after,
-.org-pill[data-note]:focus-visible::after,
-.every-pill[data-note]:hover::after,
-.every-pill[data-note]:focus-visible::after { opacity: 1; }
+      /* Note tooltip (journey) */
+      .org-pill[data-note],
+      .every-pill[data-note] {
+        position: relative;
+      }
+      .org-pill[data-note]::after,
+      .every-pill[data-note]::after {
+        content: attr(data-note);
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background: var(--ink);
+        color: var(--bone);
+        font-size: 0.64rem;
+        font-weight: 400;
+        line-height: 1.4;
+        padding: 0.25rem 0.55rem;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.12s;
+        z-index: 20;
+      }
+      .org-pill[data-note]:hover::after,
+      .org-pill[data-note]:focus-visible::after,
+      .every-pill[data-note]:hover::after,
+      .every-pill[data-note]:focus-visible::after {
+        opacity: 1;
+      }
 
-.ref-arrow { color: var(--rust); }
+      .ref-arrow {
+        color: var(--rust);
+      }
 
-/* Across-stages */
-.across-stages-section {
-  margin-top: 0.2rem;
-  padding: 0.35rem 0 0.6rem;
-  position: relative;
-}
-.across-rows-wrap { position: relative; }
-.across-row {
-  position: relative;
-  height: 34px;
-  margin-bottom: 0.3rem;
-}
-.across-band {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  height: 22px;
-  background: var(--bone);
-  border-radius: 11px;
-  display: flex;
-  align-items: center;
-  padding: 0 0.7rem 0 0.5rem;
-  gap: 0.4rem;
-  font-size: 0.74rem;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: box-shadow 0.15s, transform 0.15s;
-}
-.across-band:hover, .across-band:focus-visible {
-  box-shadow: 0 2px 8px rgba(41,38,33,0.16);
-  transform: translateY(calc(-50% - 1px));
-  outline: none;
-}
-.across-band:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-.across-band.funding    { border: 1.4px solid var(--rust);  }
-.across-band.mentoring  { border: 1.4px solid var(--slate); }
-.across-band.capability { border: 1.4px solid var(--pine);  }
-.across-band.networks   { border: 1.4px solid var(--ochre); }
-.across-band .need-dot  { width: 8px; height: 8px; }
-.span-idea-growth    { left: 0%;    width: 74.5%; }
-.span-startup-scale  { left: 25.5%; width: 74.5%; }
-.span-startup-growth { left: 25.5%; width: 49%;   }
+      /* Across-stages */
+      .across-stages-section {
+        margin-top: 0.2rem;
+        padding: 0.35rem 0 0.6rem;
+        position: relative;
+      }
+      .across-rows-wrap {
+        position: relative;
+      }
+      .across-row {
+        position: relative;
+        height: 34px;
+        margin-bottom: 0.3rem;
+      }
+      .across-band {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 22px;
+        background: var(--bone);
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        padding: 0 0.7rem 0 0.5rem;
+        gap: 0.4rem;
+        font-size: 0.74rem;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      .across-band:hover,
+      .across-band:focus-visible {
+        box-shadow: 0 2px 8px rgba(41, 38, 33, 0.16);
+        transform: translateY(calc(-50% - 1px));
+        outline: none;
+      }
+      .across-band:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+      .across-band.funding {
+        border: 1.4px solid var(--rust);
+      }
+      .across-band.mentoring {
+        border: 1.4px solid var(--slate);
+      }
+      .across-band.capability {
+        border: 1.4px solid var(--pine);
+      }
+      .across-band.networks {
+        border: 1.4px solid var(--ochre);
+      }
+      .across-band .need-dot {
+        width: 8px;
+        height: 8px;
+      }
+      .span-idea-growth {
+        left: 0%;
+        width: 74.5%;
+      }
+      .span-startup-scale {
+        left: 25.5%;
+        width: 74.5%;
+      }
+      .span-startup-growth {
+        left: 25.5%;
+        width: 49%;
+      }
 
-/* Legend */
-.legend-section {
-  margin-top: 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  align-items: flex-start;
-}
-.legend-block h3, .needtype-block h3 {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink2);
-  margin-bottom: 0.65rem;
-}
-.legend-items { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.legend-item { display: flex; align-items: center; gap: 0.55rem; font-size: 0.75rem; color: var(--ink); }
-.legend-coin-sm {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--rust);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.legend-pill-sm {
-  display: inline-flex;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
-  background: var(--pine); color: var(--bone);
-  font-size: 0.68rem; font-weight: 500;
-  flex-shrink: 0;
-}
-.legend-band-sm {
-  display: inline-block;
-  width: 54px; height: 14px;
-  background: var(--bone);
-  border: 1.4px solid var(--slate);
-  border-radius: 7px;
-  flex-shrink: 0;
-}
-.needtype-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem 1.75rem; }
-.needtype-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.75rem; color: var(--ink); }
-.nt-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+      /* Legend */
+      .legend-section {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+      .legend-block h3,
+      .needtype-block h3 {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        margin-bottom: 0.65rem;
+      }
+      .legend-items {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.75rem;
+        color: var(--ink);
+      }
+      .legend-coin-sm {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--rust);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .legend-pill-sm {
+        display: inline-flex;
+        padding: 0.15rem 0.45rem;
+        border-radius: 6px;
+        background: var(--pine);
+        color: var(--bone);
+        font-size: 0.68rem;
+        font-weight: 500;
+        flex-shrink: 0;
+      }
+      .legend-band-sm {
+        display: inline-block;
+        width: 54px;
+        height: 14px;
+        background: var(--bone);
+        border: 1.4px solid var(--slate);
+        border-radius: 7px;
+        flex-shrink: 0;
+      }
+      .needtype-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.45rem 1.75rem;
+      }
+      .needtype-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.75rem;
+        color: var(--ink);
+      }
+      .nt-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
 
-/* Journey mobile (≤768px) */
-.mobile-stages { display: none; }
+      /* Journey mobile (≤768px) */
+      .mobile-stages {
+        display: none;
+      }
 
-/* Journey shimmer (horizontal awa) */
-@keyframes awa-shimmer-h {
-  from { transform: translateX(-200%); }
-  to   { transform: translateX(300%); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .awa-bar::after {
-    content: '';
-    position: absolute; inset: 0; border-radius: inherit;
-    background: linear-gradient(90deg,
-      transparent 20%, rgba(255,255,255,0.11) 50%, transparent 80%);
-    pointer-events: none;
-    animation: awa-shimmer-h 6s ease-in-out 3.6s infinite;
-  }
-}
+      /* Journey shimmer (horizontal awa) */
+      @keyframes awa-shimmer-h {
+        from {
+          transform: translateX(-200%);
+        }
+        to {
+          transform: translateX(300%);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .awa-bar::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            90deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.11) 50%,
+            transparent 80%
+          );
+          pointer-events: none;
+          animation: awa-shimmer-h 6s ease-in-out 3.6s infinite;
+        }
+      }
 
-/* Journey ≤768px */
-@media (max-width: 768px) {
-  .j-canvas { padding: 0 1rem 2rem; }
-  .every-stage-bar { flex-wrap: wrap; }
-  .every-pill { padding: 0.45rem 0.7rem 0.45rem 0.45rem; font-size: 0.78rem; }
-  #stages-grid  { display: none !important; }
-  #referral-svg { display: none; }
-  .mobile-stages {
-    display: block;
-    position: relative;
-  }
-  .mobile-river {
-    position: absolute;
-    left: 26px; top: 0; bottom: 0;
-    width: 9px;
-    transform: translateX(-50%);
-    background: linear-gradient(to bottom, #52896a, var(--pine) 45%, #2b5038);
-    border-radius: 5px;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-  .mobile-stage {
-    display: grid;
-    grid-template-columns: 52px 1fr;
-    column-gap: 0.85rem;
-    padding-bottom: 2.5rem;
-    position: relative;
-  }
-  .mobile-stage:last-child { padding-bottom: 0.5rem; }
-  .mobile-coin-cell {
-    position: relative; z-index: 2;
-    display: flex; justify-content: center;
-  }
-  .mobile-content-cell { padding-top: 0.55rem; min-width: 0; }
-  .mobile-stage-hdr { margin-bottom: 0.45rem; }
-  .mobile-stages .org-item { min-height: 44px; align-items: center; }
-  .mobile-stages .org-pill { padding: 0.45rem 0.7rem; font-size: 0.8rem; }
-  .mobile-ref-note {
-    display: flex; align-items: center; gap: 0.25rem;
-    font-size: 0.61rem; color: var(--ink2);
-    margin-top: 0.1rem; padding-left: 1.35rem;
-  }
-  .m-arrow { color: var(--rust); }
-  .across-stages-section { margin-top: 1rem; }
-  .across-row { height: auto; margin-bottom: 0.45rem; }
-  .across-band {
-    position: static;
-    transform: none; width: 100%; white-space: normal;
-    display: flex;
-  }
-  .legend-section { flex-direction: column; gap: 1.5rem; }
-}
+      /* Journey ≤768px */
+      @media (max-width: 768px) {
+        .j-canvas {
+          padding: 0 1rem 2rem;
+        }
+        .every-stage-bar {
+          flex-wrap: wrap;
+        }
+        .every-pill {
+          padding: 0.45rem 0.7rem 0.45rem 0.45rem;
+          font-size: 0.78rem;
+        }
+        #stages-grid {
+          display: none !important;
+        }
+        #referral-svg {
+          display: none;
+        }
+        .mobile-stages {
+          display: block;
+          position: relative;
+        }
+        .mobile-river {
+          position: absolute;
+          left: 26px;
+          top: 0;
+          bottom: 0;
+          width: 9px;
+          transform: translateX(-50%);
+          background: linear-gradient(
+            to bottom,
+            #52896a,
+            var(--pine) 45%,
+            #2b5038
+          );
+          border-radius: 5px;
+          pointer-events: none;
+          z-index: 0;
+          overflow: hidden;
+        }
+        .mobile-stage {
+          display: grid;
+          grid-template-columns: 52px 1fr;
+          column-gap: 0.85rem;
+          padding-bottom: 2.5rem;
+          position: relative;
+        }
+        .mobile-stage:last-child {
+          padding-bottom: 0.5rem;
+        }
+        .mobile-coin-cell {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          justify-content: center;
+        }
+        .mobile-content-cell {
+          padding-top: 0.55rem;
+          min-width: 0;
+        }
+        .mobile-stage-hdr {
+          margin-bottom: 0.45rem;
+        }
+        .mobile-stages .org-item {
+          min-height: 44px;
+          align-items: center;
+        }
+        .mobile-stages .org-pill {
+          padding: 0.45rem 0.7rem;
+          font-size: 0.8rem;
+        }
+        .mobile-ref-note {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.61rem;
+          color: var(--ink2);
+          margin-top: 0.1rem;
+          padding-left: 1.35rem;
+        }
+        .m-arrow {
+          color: var(--rust);
+        }
+        .across-stages-section {
+          margin-top: 1rem;
+        }
+        .across-row {
+          height: auto;
+          margin-bottom: 0.45rem;
+        }
+        .across-band {
+          position: static;
+          transform: none;
+          width: 100%;
+          white-space: normal;
+          display: flex;
+        }
+        .legend-section {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
 
-@media (prefers-reduced-motion: no-preference) {
-  .mobile-river::after {
-    content: '';
-    position: absolute; inset: 0; border-radius: inherit;
-    background: linear-gradient(180deg,
-      transparent 20%, rgba(255,255,255,0.11) 50%, transparent 80%);
-    pointer-events: none;
-    animation: awa-shimmer-v 6s ease-in-out 2s infinite;
-  }
-  @keyframes awa-shimmer-v {
-    from { transform: translateY(-200%); }
-    to   { transform: translateY(300%); }
-  }
-}
+      @media (prefers-reduced-motion: no-preference) {
+        .mobile-river::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            180deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.11) 50%,
+            transparent 80%
+          );
+          pointer-events: none;
+          animation: awa-shimmer-v 6s ease-in-out 2s infinite;
+        }
+        @keyframes awa-shimmer-v {
+          from {
+            transform: translateY(-200%);
+          }
+          to {
+            transform: translateY(300%);
+          }
+        }
+      }
 
-/* ══════════════════════════════════════════════════════════
+      /* ══════════════════════════════════════════════════════════
    DIRECTORY VIEW CSS
    ══════════════════════════════════════════════════════════ */
 
-.d-container {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.75rem var(--pg) 3.5rem;
-}
+      .d-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.75rem var(--pg) 3.5rem;
+      }
 
-/* Vertical awa spine */
-.d-awa {
-  position: absolute;
-  left: calc(var(--pg) + var(--col-w) / 2);
-  transform: translateX(-50%);
-  top: 0; bottom: 0;
-  width: 6px;
-  background: linear-gradient(to bottom, #52896a, var(--pine) 55%, #2b5038);
-  border-radius: 3px;
-  pointer-events: none;
-  transform-origin: top center;
-  z-index: 1;
-}
+      /* Vertical awa spine */
+      .d-awa {
+        position: absolute;
+        left: calc(var(--pg) + var(--col-w) / 2);
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        background: linear-gradient(
+          to bottom,
+          #52896a,
+          var(--pine) 55%,
+          #2b5038
+        );
+        border-radius: 3px;
+        pointer-events: none;
+        transform-origin: top center;
+        z-index: 1;
+      }
 
-@keyframes awa-shimmer-v-dir {
-  from { transform: translateY(-200%) translateX(-50%); }
-  to   { transform: translateY(300%)  translateX(-50%); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .d-awa::after {
-    content: '';
-    position: absolute; inset: 0; border-radius: inherit;
-    background: linear-gradient(180deg,
-      transparent 20%, rgba(255,255,255,0.11) 50%, transparent 80%);
-    pointer-events: none;
-    animation: awa-shimmer-v 6s ease-in-out 2s infinite;
-  }
-}
+      @keyframes awa-shimmer-v-dir {
+        from {
+          transform: translateY(-200%) translateX(-50%);
+        }
+        to {
+          transform: translateY(300%) translateX(-50%);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .d-awa::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            180deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.11) 50%,
+            transparent 80%
+          );
+          pointer-events: none;
+          animation: awa-shimmer-v 6s ease-in-out 2s infinite;
+        }
+      }
 
-/* Category row */
-.d-category { position: relative; }
-.d-node { display: flex; align-items: flex-start; }
+      /* Category row */
+      .d-category {
+        position: relative;
+      }
+      .d-node {
+        display: flex;
+        align-items: flex-start;
+      }
 
-/* Coin column — fixed width, awa runs through its centre */
-.d-coin-col {
-  width: var(--col-w);
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-}
-.d-coin {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--cat-color);
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.22);
-  z-index: 2;
-}
-.d-coin svg {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 65%;
-}
+      /* Coin column — fixed width, awa runs through its centre */
+      .d-coin-col {
+        width: var(--col-w);
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .d-coin {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--cat-color);
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+        z-index: 2;
+      }
+      .d-coin svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 65%;
+      }
 
-/* Content block */
-.d-content {
-  flex: 1;
-  min-width: 0;
-  padding-left: 1.25rem;
-  padding-bottom: 3rem;
-}
-.d-category:last-child .d-content { padding-bottom: 0; }
+      /* Content block */
+      .d-content {
+        flex: 1;
+        min-width: 0;
+        padding-left: 1.25rem;
+        padding-bottom: 3rem;
+      }
+      .d-category:last-child .d-content {
+        padding-bottom: 0;
+      }
 
-.d-head { margin-bottom: 0.75rem; }
-.d-label {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--cat-color);
-  line-height: 1.2;
-  margin-bottom: 0.15rem;
-}
-.d-subtitle {
-  font-size: 0.69rem;
-  color: var(--ink2);
-  font-weight: 400;
-  line-height: 1.3;
-}
+      .d-head {
+        margin-bottom: 0.75rem;
+      }
+      .d-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--cat-color);
+        line-height: 1.2;
+        margin-bottom: 0.15rem;
+      }
+      .d-subtitle {
+        font-size: 0.69rem;
+        color: var(--ink2);
+        font-weight: 400;
+        line-height: 1.3;
+      }
 
-/* Org pill cluster */
-.d-org-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  align-content: flex-start;
-}
-.d-org-item { display: flex; align-items: center; min-height: 44px; }
+      /* Org pill cluster */
+      .d-org-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-content: flex-start;
+      }
+      .d-org-item {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+      }
 
-.d-org-link,
-.d-org-nolink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.79rem;
-  font-weight: 500;
-  line-height: 1.3;
-  padding: 0.32rem 0.65rem 0.32rem 0.45rem;
-  border-radius: 9px;
-  position: relative;
-}
-.d-org-link::before,
-.d-org-nolink::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.d-org-link::before   { background: var(--cat-color); }
-.d-org-nolink::before { background: var(--line); }
+      .d-org-link,
+      .d-org-nolink {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.79rem;
+        font-weight: 500;
+        line-height: 1.3;
+        padding: 0.32rem 0.65rem 0.32rem 0.45rem;
+        border-radius: 9px;
+        position: relative;
+      }
+      .d-org-link::before,
+      .d-org-nolink::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .d-org-link::before {
+        background: var(--cat-color);
+      }
+      .d-org-nolink::before {
+        background: var(--line);
+      }
 
-.d-org-link {
-  color: var(--ink);
-  background: var(--bone);
-  border: 1.2px solid var(--line);
-  text-decoration: none;
-  transition: box-shadow 0.15s, transform 0.15s;
-}
-.d-org-link:hover, .d-org-link:focus-visible {
-  box-shadow: 0 2px 9px rgba(0,0,0,0.13);
-  transform: translateY(-1px);
-  outline: none;
-}
-.d-org-link:focus-visible { border-color: var(--cat-color); }
+      .d-org-link {
+        color: var(--ink);
+        background: var(--bone);
+        border: 1.2px solid var(--line);
+        text-decoration: none;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      .d-org-link:hover,
+      .d-org-link:focus-visible {
+        box-shadow: 0 2px 9px rgba(0, 0, 0, 0.13);
+        transform: translateY(-1px);
+        outline: none;
+      }
+      .d-org-link:focus-visible {
+        border-color: var(--cat-color);
+      }
 
-.d-org-nolink {
-  color: var(--ink2);
-  background: transparent;
-  border: 1.2px dashed var(--line);
-  opacity: 0.7;
-  cursor: default;
-  user-select: none;
-}
+      .d-org-nolink {
+        color: var(--ink2);
+        background: transparent;
+        border: 1.2px dashed var(--line);
+        opacity: 0.7;
+        cursor: default;
+        user-select: none;
+      }
 
-/* Directory tooltip */
-.d-org-link[data-note]::after,
-.d-org-nolink[data-note]::after {
-  content: attr(data-note);
-  position: absolute;
-  bottom: calc(100% + 6px); left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  background: var(--ink); color: var(--bone);
-  font-size: 0.64rem; font-weight: 400; line-height: 1.4;
-  padding: 0.25rem 0.55rem;
-  border-radius: 5px;
-  pointer-events: none; opacity: 0;
-  transition: opacity 0.12s; z-index: 20;
-}
-.d-org-link[data-note]:hover::after,
-.d-org-link[data-note]:focus-visible::after,
-.d-org-nolink[data-note]:hover::after { opacity: 1; }
+      /* Directory tooltip */
+      .d-org-link[data-note]::after,
+      .d-org-nolink[data-note]::after {
+        content: attr(data-note);
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background: var(--ink);
+        color: var(--bone);
+        font-size: 0.64rem;
+        font-weight: 400;
+        line-height: 1.4;
+        padding: 0.25rem 0.55rem;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.12s;
+        z-index: 20;
+      }
+      .d-org-link[data-note]:hover::after,
+      .d-org-link[data-note]:focus-visible::after,
+      .d-org-nolink[data-note]:hover::after {
+        opacity: 1;
+      }
 
-/* Directory ≤520px */
-@media (max-width: 520px) {
-  :root { --col-w: 44px; --pg: 1rem; }
-  .d-coin { width: 36px; height: 36px; }
-  .d-content { padding-left: 0.9rem; }
-}
+      /* Directory ≤520px */
+      @media (max-width: 520px) {
+        :root {
+          --col-w: 44px;
+          --pg: 1rem;
+        }
+        .d-coin {
+          width: 36px;
+          height: 36px;
+        }
+        .d-content {
+          padding-left: 0.9rem;
+        }
+      }
 
-/* ══════════════════════════════════════
+      /* ══════════════════════════════════════
    FOOTER
    ══════════════════════════════════════ */
-.site-footer {
-  margin-top: 2rem;
-  border-top: 1px solid var(--line);
-  padding: 1.5rem 0;
-}
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--pg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-.footer-lockup { display: flex; flex-direction: column; gap: 0.05rem; }
-.footer-eyebrow {
-  font-size: 0.59rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink2);
-}
-.footer-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
-.footer-qr { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
-.qr-box {
-  width: 60px; height: 60px;
-  border: 1.5px dashed var(--line);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-}
-.qr-label { font-size: 0.6rem; color: var(--ink2); text-align: center; line-height: 1.4; }
-.footer-credit { font-size: 0.72rem; color: var(--ink2); text-align: right; line-height: 1.6; }
+      .site-footer {
+        margin-top: 2rem;
+        border-top: 1px solid var(--line);
+        padding: 1.5rem 0;
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--pg);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+      .footer-lockup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.05rem;
+      }
+      .footer-eyebrow {
+        font-size: 0.59rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink2);
+      }
+      .footer-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .footer-qr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .qr-box {
+        width: 60px;
+        height: 60px;
+        border: 1.5px dashed var(--line);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .qr-label {
+        font-size: 0.6rem;
+        color: var(--ink2);
+        text-align: center;
+        line-height: 1.4;
+      }
+      .footer-credit {
+        font-size: 0.72rem;
+        color: var(--ink2);
+        text-align: right;
+        line-height: 1.6;
+      }
 
-@media (max-width: 768px) {
-  .site-header { padding: 1.5rem 0 0.75rem; }
-  .site-header h1 { font-size: 1.15rem; }
-  .header-inner, .footer-inner { padding: 0 1rem; }
-  .view-toggle-wrap { padding: 0.5rem 1rem 1rem; }
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .footer-credit { text-align: left; }
-  .site-footer { padding: 1.25rem 0; }
-}
+      @media (max-width: 768px) {
+        .site-header {
+          padding: 1.5rem 0 0.75rem;
+        }
+        .site-header h1 {
+          font-size: 1.15rem;
+        }
+        .header-inner,
+        .footer-inner {
+          padding: 0 1rem;
+        }
+        .view-toggle-wrap {
+          padding: 0.5rem 1rem 1rem;
+        }
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        .footer-credit {
+          text-align: left;
+        }
+        .site-footer {
+          padding: 1.25rem 0;
+        }
+      }
 
-/* Global reduced-motion kill-switch */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; animation: none !important; }
-}
-</style>
-</head>
-<body>
+      /* Global reduced-motion kill-switch */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <p class="header-eyebrow">Puna Pakihi</p>
+        <h1>Your map of the business support ecosystem</h1>
+      </div>
+    </header>
 
-<header class="site-header" role="banner">
-  <div class="header-inner">
-    <p class="header-eyebrow">Puna Pakihi</p>
-    <h1>Your map of the business support ecosystem</h1>
-  </div>
-</header>
-
-<div class="view-toggle-wrap" role="group" aria-label="Choose map view">
-  <div class="view-toggle">
-    <button class="toggle-btn" data-view="journey"   aria-pressed="false">Journey</button>
-    <button class="toggle-btn" data-view="directory" aria-pressed="true" >Directory</button>
-  </div>
-</div>
-
-<main id="map-body" aria-live="polite" aria-label="Map content">
-  <!-- populated by switchView() on load -->
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <div class="footer-lockup">
-      <span class="footer-eyebrow">Ngāi Tahu</span>
-      <span class="footer-title">Puna Pakihi</span>
+    <div class="view-toggle-wrap" role="group" aria-label="Choose map view">
+      <div class="view-toggle">
+        <button class="toggle-btn" data-view="journey" aria-pressed="false">
+          Journey
+        </button>
+        <button class="toggle-btn" data-view="directory" aria-pressed="true">
+          Directory
+        </button>
+      </div>
     </div>
-    <!-- QR: hidden until Vercel URL confirmed.
+
+    <main id="map-body" aria-live="polite" aria-label="Map content">
+      <!-- populated by switchView() on load -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-lockup">
+          <span class="footer-eyebrow">Ngāi Tahu</span>
+          <span class="footer-title">Puna Pakihi</span>
+        </div>
+        <!-- QR: hidden until Vercel URL confirmed.
     <div class="footer-qr" aria-label="Scan for digital map">
       <div class="qr-box" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -799,460 +1136,763 @@ body {
       <p class="qr-label">Scan for<br>digital map</p>
     </div>
     -->
-    <div class="footer-credit">
-      <div>Built by Te Wairama Digital</div>
-      <div>For Te Rūnanga o Ngāi Tahu</div>
-    </div>
-  </div>
-</footer>
+        <div class="footer-credit">
+          <div>Built by Te Wairama Digital</div>
+          <div>For Te Rūnanga o Ngāi Tahu</div>
+        </div>
+      </div>
+    </footer>
 
-<script>
-/* ═══════════════════════════════════════════════════════════════════
+    <script>
+      /* ═══════════════════════════════════════════════════════════════════
    SHARED DATA
    Each org carries a `views` array declaring which views it belongs to,
    plus the fields required by those views.
    One URL edit propagates to every view that org appears in.
    ═══════════════════════════════════════════════════════════════════ */
-const ORGS = [
+      const ORGS = [
+        /* ── Journey: every-stage ── */
+        {
+          views: ['journey'],
+          name: 'Puna Pakihi',
+          stage: 'everyStage',
+          needType: 'capability',
+          url: 'https://punapakihi.co.nz',
+          note: 'Your front door to Māori business support',
+        },
+        {
+          views: ['journey'],
+          name: 'Te Puni Kōkiri',
+          stage: 'everyStage',
+          needType: 'capability',
+          url: 'https://www.tpk.govt.nz',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Your Local Rūnanga',
+          stage: 'everyStage',
+          needType: 'networks',
+          url: 'https://ngaitahu.iwi.nz/our-rohe/runanga/',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Your Local Polytechnic',
+          stage: 'everyStage',
+          needType: 'capability',
+          url: 'https://www.tec.govt.nz',
+          note: '',
+        },
 
-  /* ── Journey: every-stage ── */
-  { views: ['journey'],
-    name: "Puna Pakihi",        stage: "everyStage",   needType: "capability",
-    url: "https://punapakihi.co.nz",
-    note: "Your front door to Māori business support" },
-  { views: ['journey'],
-    name: "Te Puni Kōkiri",     stage: "everyStage",   needType: "capability",
-    url: "https://www.tpk.govt.nz", note: "" },
-  { views: ['journey'],
-    name: "Your Local Rūnanga", stage: "everyStage",   needType: "networks",
-    url: "https://ngaitahu.iwi.nz/our-rohe/runanga/", note: "" },
-  { views: ['journey'],
-    name: "Your Local Polytechnic", stage: "everyStage", needType: "capability",
-    url: "https://www.tec.govt.nz", note: "" },
+        /* ── Journey: Idea ── */
+        {
+          views: ['journey'],
+          name: 'Crowdfunding',
+          stage: 'idea',
+          needType: 'funding',
+          url: 'https://www.pledgeme.co.nz',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Business.govt.nz',
+          stage: 'idea',
+          needType: 'capability',
+          url: 'https://www.business.govt.nz',
+          note: '',
+          refKey: 'business-govt-nz',
+          mobileRef: 'Inland Revenue',
+        },
 
-  /* ── Journey: Idea ── */
-  { views: ['journey'],
-    name: "Crowdfunding",       stage: "idea",          needType: "funding",
-    url: "https://www.pledgeme.co.nz", note: "" },
-  { views: ['journey'],
-    name: "Business.govt.nz",   stage: "idea",          needType: "capability",
-    url: "https://www.business.govt.nz", note: "",
-    refKey: "business-govt-nz", mobileRef: "Inland Revenue" },
+        /* ── Journey: Start-Up ── */
+        {
+          views: ['journey'],
+          name: 'Inland Revenue',
+          stage: 'startup',
+          needType: 'capability',
+          url: 'https://www.ird.govt.nz',
+          note: '',
+          refKey: 'inland-revenue',
+          mobileRef: 'Whāriki',
+        },
 
-  /* ── Journey: Start-Up ── */
-  { views: ['journey'],
-    name: "Inland Revenue",     stage: "startup",       needType: "capability",
-    url: "https://www.ird.govt.nz", note: "",
-    refKey: "inland-revenue", mobileRef: "Whāriki" },
+        /* ── Journey: Growth ── */
+        {
+          views: ['journey'],
+          name: 'NZTE',
+          stage: 'growth',
+          needType: 'networks',
+          url: 'https://www.nzte.govt.nz',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: "Māori Women's Dev",
+          stage: 'growth',
+          needType: 'mentoring',
+          url: 'https://www.mwdi.co.nz',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Whāriki',
+          stage: 'growth',
+          needType: 'networks',
+          url: 'https://www.whariki.co.nz',
+          note: '',
+          refKey: 'whariki',
+        },
+        {
+          views: ['journey'],
+          name: 'Poutama Trust',
+          stage: 'growth',
+          needType: 'capability',
+          url: 'https://www.poutama.co.nz',
+          note: '',
+        },
 
-  /* ── Journey: Growth ── */
-  { views: ['journey'],
-    name: "NZTE",               stage: "growth",        needType: "networks",
-    url: "https://www.nzte.govt.nz", note: "" },
-  { views: ['journey'],
-    name: "Māori Women's Dev",  stage: "growth",        needType: "mentoring",
-    url: "https://www.mwdi.co.nz", note: "" },
-  { views: ['journey'],
-    name: "Whāriki",            stage: "growth",        needType: "networks",
-    url: "https://www.whariki.co.nz", note: "",
-    refKey: "whariki" },
-  { views: ['journey'],
-    name: "Poutama Trust",      stage: "growth",        needType: "capability",
-    url: "https://www.poutama.co.nz", note: "" },
+        /* ── Journey: Scale ── */
+        {
+          views: ['journey'],
+          name: 'Angel Networks',
+          stage: 'scale',
+          needType: 'funding',
+          url: 'https://www.angelassociation.co.nz',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Māori Dev Funds',
+          stage: 'scale',
+          needType: 'funding',
+          url: 'https://www.poutama.co.nz/services/investment',
+          note: '',
+        },
+        {
+          views: ['journey'],
+          name: 'Banks',
+          stage: 'scale',
+          needType: 'funding',
+          url: 'https://www.mbie.govt.nz/business-and-employment/business/finance-and-loans/',
+          note: '',
+        },
 
-  /* ── Journey: Scale ── */
-  { views: ['journey'],
-    name: "Angel Networks",     stage: "scale",         needType: "funding",
-    url: "https://www.angelassociation.co.nz", note: "" },
-  { views: ['journey'],
-    name: "Māori Dev Funds",    stage: "scale",         needType: "funding",
-    url: "https://www.poutama.co.nz/services/investment", note: "" },
-  { views: ['journey'],
-    name: "Banks",              stage: "scale",         needType: "funding",
-    url: "https://www.mbie.govt.nz/business-and-employment/business/finance-and-loans/", note: "" },
+        /* ── Journey: Across stages ── */
+        {
+          views: ['journey'],
+          name: 'Regional Business Partner Network',
+          stage: 'acrossStages',
+          needType: 'mentoring',
+          url: 'https://www.regionalbusinesspartners.co.nz',
+          note: '',
+          spanFrom: 'idea',
+          spanTo: 'growth',
+          spanClass: 'span-idea-growth',
+        },
+        {
+          views: ['journey'],
+          name: 'Business Mentors NZ',
+          stage: 'acrossStages',
+          needType: 'mentoring',
+          url: 'https://www.businessmentors.org.nz',
+          note: '',
+          spanFrom: 'startup',
+          spanTo: 'scale',
+          spanClass: 'span-startup-scale',
+        },
+        {
+          views: ['journey'],
+          name: 'Industry Skills Boards',
+          stage: 'acrossStages',
+          needType: 'capability',
+          url: 'https://www.tec.govt.nz/teo/working-with-tec/workforce-skills/',
+          note: '',
+          spanFrom: 'startup',
+          spanTo: 'growth',
+          spanClass: 'span-startup-growth',
+        },
 
-  /* ── Journey: Across stages ── */
-  { views: ['journey'],
-    name: "Regional Business Partner Network", stage: "acrossStages", needType: "mentoring",
-    url: "https://www.regionalbusinesspartners.co.nz", note: "",
-    spanFrom: "idea",    spanTo: "growth",  spanClass: "span-idea-growth" },
-  { views: ['journey'],
-    name: "Business Mentors NZ", stage: "acrossStages", needType: "mentoring",
-    url: "https://www.businessmentors.org.nz", note: "",
-    spanFrom: "startup", spanTo: "scale",   spanClass: "span-startup-scale" },
-  { views: ['journey'],
-    name: "Industry Skills Boards", stage: "acrossStages", needType: "capability",
-    url: "https://www.tec.govt.nz/teo/working-with-tec/workforce-skills/", note: "",
-    spanFrom: "startup", spanTo: "growth",  spanClass: "span-startup-growth" },
+        /* ── Directory: Tools ── */
+        {
+          views: ['directory'],
+          name: 'Ngāi Tahu - Puna Pakihi Resources',
+          categories: ['tools'],
+          url: 'https://ngaitahu.iwi.nz/opportunities-and-resources/for-business/puna-pakihi/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Business.govt.nz',
+          categories: ['tools', 'legal'],
+          url: 'https://www.business.govt.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Inland Revenue (Kaitakawaenga Māori)',
+          categories: ['tools'],
+          url: 'https://www.ird.govt.nz/contactus/kaitakawaenga-maori',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'MSD',
+          categories: ['tools'],
+          url: 'https://www.workandincome.govt.nz/work/start-your-own-business/index.html',
+          note: '',
+        },
 
-  /* ── Directory: Tools ── */
-  { views: ['directory'],
-    name: "Ngāi Tahu - Puna Pakihi Resources",
-    categories: ["tools"], url: null, note: "" },
-  { views: ['directory'],
-    name: "Business.govt.nz",
-    categories: ["tools", "legal"], url: "https://www.business.govt.nz/", note: "" },
-  { views: ['directory'],
-    name: "Inland Revenue (Kaitakawaenga Māori)",
-    categories: ["tools"], url: "https://www.ird.govt.nz/contactus/kaitakawaenga-maori", note: "" },
-  { views: ['directory'],
-    name: "MSD",
-    categories: ["tools"], url: "https://www.workandincome.govt.nz/work/start-your-own-business/index.html", note: "" },
+        /* ── Directory: Funding ── */
+        {
+          views: ['directory'],
+          name: 'Indigishare',
+          categories: ['funding'],
+          url: 'https://indigishare.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Creative New Zealand',
+          categories: ['funding'],
+          url: 'https://creativenz.govt.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Regional Business Partners',
+          categories: ['funding'],
+          url: 'https://web.regionalbusinesspartners.co.nz/business/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Poutama Trust',
+          categories: ['funding'],
+          url: 'https://poutama.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: "Māori Women's Development",
+          categories: ['funding'],
+          url: 'https://mwdi.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Tupu',
+          categories: ['funding'],
+          url: 'https://tupu.org.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Start-Up Aotearoa',
+          categories: ['funding'],
+          url: 'https://startupaotearoa.org',
+          note: '',
+        },
 
-  /* ── Directory: Funding ── */
-  { views: ['directory'],
-    name: "Indigishare",
-    categories: ["funding"], url: "https://indigishare.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Creative New Zealand",
-    categories: ["funding"], url: "https://creativenz.govt.nz/", note: "" },
-  { views: ['directory'],
-    name: "Regional Business Partners",
-    categories: ["funding"], url: "https://web.regionalbusinesspartners.co.nz/business/", note: "" },
-  { views: ['directory'],
-    name: "Poutama Trust",
-    categories: ["funding"], url: "https://poutama.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Māori Women's Development",
-    categories: ["funding"], url: "https://mwdi.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Tupu",
-    categories: ["funding"], url: "https://tupu.org.nz/", note: "" },
-  { views: ['directory'],
-    name: "Start-Up Aotearoa",
-    categories: ["funding"], url: "https://startupaotearoa.org", note: "" },
+        /* ── Directory: Networks / Iwi ── */
+        {
+          views: ['directory'],
+          name: 'Ngāi Tahu - Te Aka Haumi o Tahu',
+          categories: ['networksIwi'],
+          url: 'https://ngaitahu.iwi.nz/opportunities-and-resources/for-business/business-directory/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'KUMA',
+          categories: ['networksIwi'],
+          url: 'https://www.kuma.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Te Tau Ihu - Toiere',
+          categories: ['networksIwi'],
+          url: 'https://www.toiere.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Wellington Māori Business Network',
+          categories: ['networksIwi'],
+          url: 'https://www.teawe.maori.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Taranaki Māori Business',
+          categories: ['networksIwi'],
+          url: 'https://htpkt.maori.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Waikato Tainui',
+          categories: ['networksIwi'],
+          url: 'https://waikatotainui.com/puna-pakihi/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Whāriki',
+          categories: ['networksIwi'],
+          url: 'https://www.whariki.co.nz/whariki-directory',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Amotai',
+          categories: ['networksIwi'],
+          url: 'https://amotai.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Kāpiti & Horowhenua Māori Business Network',
+          categories: ['networksIwi'],
+          url: 'https://trp.maori.nz/service-directory/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Whanganui Māori Business Network',
+          categories: ['networksIwi'],
+          url: 'https://www.temanuatatu.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Te Rūnanga o Ngāti Awa',
+          categories: ['networksIwi'],
+          url: 'https://www.ngatiawa.iwi.nz/',
+          note: '',
+        },
 
-  /* ── Directory: Networks / Iwi ── */
-  { views: ['directory'],
-    name: "Ngāi Tahu - Te Aka Haumi o Tahu",
-    categories: ["networksIwi"], url: null, note: "" },
-  { views: ['directory'],
-    name: "KUMA",
-    categories: ["networksIwi"], url: "https://www.kuma.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Te Tau Ihu - Toiere",
-    categories: ["networksIwi"], url: "https://www.toiere.nz/", note: "" },
-  { views: ['directory'],
-    name: "Wellington Māori Business Network",
-    categories: ["networksIwi"], url: "https://www.teawe.maori.nz/", note: "" },
-  { views: ['directory'],
-    name: "Taranaki Māori Business",
-    categories: ["networksIwi"], url: "https://htpkt.maori.nz/", note: "" },
-  { views: ['directory'],
-    name: "Waikato Tainui",
-    categories: ["networksIwi"], url: "https://waikatotainui.com/puna-pakihi/", note: "" },
-  { views: ['directory'],
-    name: "Whāriki",
-    categories: ["networksIwi"], url: "https://www.whariki.co.nz/whariki-directory", note: "" },
-  { views: ['directory'],
-    name: "Amotai",
-    categories: ["networksIwi"], url: "https://amotai.nz/", note: "" },
-  { views: ['directory'],
-    name: "Kāpiti & Horowhenua Māori Business Network",
-    categories: ["networksIwi"], url: "https://trp.maori.nz/service-directory/", note: "" },
-  { views: ['directory'],
-    name: "Whanganui Māori Business Network",
-    categories: ["networksIwi"], url: null, note: "" },
-  { views: ['directory'],
-    name: "Te Rūnanga o Ngāti Awa",
-    categories: ["networksIwi"], url: null, note: "" },
+        /* ── Directory: Culture ── */
+        {
+          views: ['directory'],
+          name: 'Te Wānanga o Aotearoa - Te Ara Reo',
+          categories: ['culture'],
+          url: 'https://www.twoa.ac.nz/nga-akoranga/te-reo-maori',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Te Mana o Ngā Wāhine',
+          categories: ['culture'],
+          url: 'https://www.tekaingawahine.co.nz/te-mana-o-nga-wahine',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Ako Academy',
+          categories: ['culture'],
+          url: 'https://akoacademy.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Pukenga',
+          categories: ['culture'],
+          url: 'https://pukengapsychology.com/',
+          note: '',
+        },
 
-  /* ── Directory: Culture ── */
-  { views: ['directory'],
-    name: "Te Wānanga o Aotearoa - Te Ara Reo",
-    categories: ["culture"], url: "https://www.twoa.ac.nz/nga-akoranga/te-reo-maori", note: "" },
-  { views: ['directory'],
-    name: "Te Mana o Ngā Wāhine",
-    categories: ["culture"], url: "https://www.tekaingawahine.co.nz/te-mana-o-nga-wahine", note: "" },
-  { views: ['directory'],
-    name: "Ako Academy",
-    categories: ["culture"], url: "https://akoacademy.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Pukenga",
-    categories: ["culture"], url: "https://pukengapsychology.com/", note: "" },
+        /* ── Directory: Legal ── */
+        {
+          views: ['directory'],
+          name: 'Kahui Legal',
+          categories: ['legal'],
+          url: 'https://www.kahuilegal.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'B Certified',
+          categories: ['legal'],
+          url: 'https://bcorporation.com.au/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'BizCover (Insurance)',
+          categories: ['legal'],
+          url: 'https://www.bizcover.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Hnry',
+          categories: ['legal'],
+          url: 'https://hnry.co.nz/',
+          note: '',
+        },
+        {
+          views: ['directory'],
+          name: 'Xero',
+          categories: ['legal'],
+          url: 'https://www.xero.com/nz/',
+          note: '',
+        },
+      ]
 
-  /* ── Directory: Legal ── */
-  { views: ['directory'],
-    name: "Kahui Legal",
-    categories: ["legal"], url: "https://www.kahuilegal.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "B Certified",
-    categories: ["legal"], url: "https://bcorporation.com.au/", note: "" },
-  { views: ['directory'],
-    name: "BizCover (Insurance)",
-    categories: ["legal"], url: "https://www.bizcover.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Hnry",
-    categories: ["legal"], url: "https://hnry.co.nz/", note: "" },
-  { views: ['directory'],
-    name: "Xero",
-    categories: ["legal"], url: "https://www.xero.com/nz/", note: "" },
-];
-
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    STATIC CONFIG (not in ORGS - layout metadata only)
    ═══════════════════════════════════════════════════════════ */
-const STAGES = [
-  { id: "idea",    col: 1, num: "01", label: "Idea",     question: "Where am I now?",         nextStep: "Talk to Puna Pakihi" },
-  { id: "startup", col: 2, num: "02", label: "Start-Up", question: "What support do I need?", nextStep: "Register + first systems" },
-  { id: "growth",  col: 3, num: "03", label: "Growth",   question: "Who can help?",            nextStep: "Build capability + capital" },
-  { id: "scale",   col: 4, num: "04", label: "Scale",    question: "What is my next step?",   nextStep: "Export + governance" },
-];
+      const STAGES = [
+        {
+          id: 'idea',
+          col: 1,
+          num: '01',
+          label: 'Idea',
+          question: 'Where am I now?',
+          nextStep: 'Talk to Puna Pakihi',
+        },
+        {
+          id: 'startup',
+          col: 2,
+          num: '02',
+          label: 'Start-Up',
+          question: 'What support do I need?',
+          nextStep: 'Register + first systems',
+        },
+        {
+          id: 'growth',
+          col: 3,
+          num: '03',
+          label: 'Growth',
+          question: 'Who can help?',
+          nextStep: 'Build capability + capital',
+        },
+        {
+          id: 'scale',
+          col: 4,
+          num: '04',
+          label: 'Scale',
+          question: 'What is my next step?',
+          nextStep: 'Export + governance',
+        },
+      ]
 
-const CATEGORIES = [
-  { id: "tools",       label: "Tools",             subtitle: "Puna Pakihi Support Resources", colorVar: "--pine"  },
-  { id: "funding",     label: "Funding",            subtitle: "Pūtea / Training",             colorVar: "--rust"  },
-  { id: "networksIwi", label: "Networks / Iwi",     subtitle: "",                             colorVar: "--slate" },
-  { id: "culture",     label: "Culture",            subtitle: "",                             colorVar: "--ochre" },
-  { id: "legal",       label: "Legal & Compliance", subtitle: "",                             colorVar: "--sage"  },
-];
+      const CATEGORIES = [
+        {
+          id: 'tools',
+          label: 'Tools',
+          subtitle: 'Puna Pakihi Support Resources',
+          colorVar: '--pine',
+        },
+        {
+          id: 'funding',
+          label: 'Funding',
+          subtitle: 'Pūtea / Training',
+          colorVar: '--rust',
+        },
+        {
+          id: 'networksIwi',
+          label: 'Networks / Iwi',
+          subtitle: '',
+          colorVar: '--slate',
+        },
+        { id: 'culture', label: 'Culture', subtitle: '', colorVar: '--ochre' },
+        {
+          id: 'legal',
+          label: 'Legal & Compliance',
+          subtitle: '',
+          colorVar: '--sage',
+        },
+      ]
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    NIHO SVG
    stageIdx / catIdx → rows 1-N, apex-up triangles, bone fill.
    viewBox height = totalH × 4/3: bakes optical bottom-padding
    so translate(-50%,-50%) centres the visual centroid on the
    coin centre at every badge size.
    ═══════════════════════════════════════════════════════════ */
-function nihoSVG(idx) {
-  const rows = idx + 1;
-  const TW = 8, TH = 7, GAP = 1.75;
-  const totalW = rows * TW + (rows - 1) * GAP;
-  const totalH = rows * TH + (rows - 1) * GAP;
-  let polys = '';
-  for (let r = 0; r < rows; r++) {
-    const cols = r + 1;
-    const rowW = cols * TW + (cols - 1) * GAP;
-    const xOff = (totalW - rowW) / 2;
-    const y    = r * (TH + GAP);
-    for (let c = 0; c < cols; c++) {
-      const x = xOff + c * (TW + GAP);
-      polys += `<polygon points="${x + TW/2},${y} ${x},${y + TH} ${x + TW},${y + TH}" fill="#f7f2e9"/>`;
-    }
-  }
-  const hPad = totalH * 4 / 3;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalW}" height="${hPad}"
-    viewBox="0 0 ${totalW} ${hPad}" aria-hidden="true" focusable="false">${polys}</svg>`;
-}
+      function nihoSVG(idx) {
+        const rows = idx + 1
+        const TW = 8,
+          TH = 7,
+          GAP = 1.75
+        const totalW = rows * TW + (rows - 1) * GAP
+        const totalH = rows * TH + (rows - 1) * GAP
+        let polys = ''
+        for (let r = 0; r < rows; r++) {
+          const cols = r + 1
+          const rowW = cols * TW + (cols - 1) * GAP
+          const xOff = (totalW - rowW) / 2
+          const y = r * (TH + GAP)
+          for (let c = 0; c < cols; c++) {
+            const x = xOff + c * (TW + GAP)
+            polys += `<polygon points="${x + TW / 2},${y} ${x},${y + TH} ${x + TW},${y + TH}" fill="#f7f2e9"/>`
+          }
+        }
+        const hPad = (totalH * 4) / 3
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalW}" height="${hPad}"
+    viewBox="0 0 ${totalW} ${hPad}" aria-hidden="true" focusable="false">${polys}</svg>`
+      }
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    LINK HELPER
    ═══════════════════════════════════════════════════════════ */
-function mkLink(url, cls, attrs, inner) {
-  if (url) return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer" ${attrs}>${inner}</a>`;
-  return `<span class="${cls}" ${attrs}>${inner}</span>`;
-}
+      function mkLink(url, cls, attrs, inner) {
+        if (url)
+          return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer" ${attrs}>${inner}</a>`
+        return `<span class="${cls}" ${attrs}>${inner}</span>`
+      }
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    REFERRAL ARROWS (journey-view only)
    ═══════════════════════════════════════════════════════════ */
-const REFERRAL_LINKS = [
-  { fromId: 'business-govt-nz', toId: 'inland-revenue' },
-  { fromId: 'inland-revenue',   toId: 'whariki'        },
-];
+      const REFERRAL_LINKS = [
+        { fromId: 'business-govt-nz', toId: 'inland-revenue' },
+        { fromId: 'inland-revenue', toId: 'whariki' },
+      ]
 
-function drawReferralArrows(animate) {
-  if (window.innerWidth <= 768) return;
-  const old = document.getElementById('referral-svg');
-  if (old) old.remove();
-  const container = document.getElementById('stages-grid');
-  if (!container) return;
+      function drawReferralArrows(animate) {
+        if (window.innerWidth <= 768) return
+        const old = document.getElementById('referral-svg')
+        if (old) old.remove()
+        const container = document.getElementById('stages-grid')
+        if (!container) return
 
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.id = 'referral-svg';
-  Object.assign(svg.style, {
-    position: 'absolute', top: '0', left: '0',
-    width: '100%', height: '100%',
-    pointerEvents: 'none', overflow: 'visible', zIndex: '5',
-  });
-  svg.setAttribute('aria-hidden', 'true');
-  svg.setAttribute('focusable', 'false');
-  container.appendChild(svg);
+        const svg = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'svg',
+        )
+        svg.id = 'referral-svg'
+        Object.assign(svg.style, {
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          overflow: 'visible',
+          zIndex: '5',
+        })
+        svg.setAttribute('aria-hidden', 'true')
+        svg.setAttribute('focusable', 'false')
+        container.appendChild(svg)
 
-  const cRect = container.getBoundingClientRect();
-  const drawn = [];
+        const cRect = container.getBoundingClientRect()
+        const drawn = []
 
-  REFERRAL_LINKS.forEach(({ fromId, toId }) => {
-    const fromEl = container.querySelector(`[data-ref-id="${fromId}"]`);
-    const toEl   = container.querySelector(`[data-ref-id="${toId}"]`);
-    if (!fromEl || !toEl) return;
-    const fR = fromEl.getBoundingClientRect();
-    const tR = toEl.getBoundingClientRect();
-    const x1 = fR.right  - cRect.left;
-    const y1 = (fR.top + fR.bottom) / 2 - cRect.top;
-    const x2 = tR.left   - cRect.left;
-    const y2 = (tR.top + tR.bottom) / 2 - cRect.top;
-    const hSpan = x2 - x1;
-    const d = `M${x1},${y1} C${x1},${y2} ${x2 - hSpan * 0.28},${y2} ${x2},${y2}`;
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', d);
-    path.setAttribute('stroke', '#a84824');
-    path.setAttribute('stroke-width', '1.3');
-    path.setAttribute('stroke-dasharray', '4 3');
-    path.setAttribute('stroke-linecap', 'round');
-    path.setAttribute('fill', 'none');
-    path.style.cssText = 'opacity:0.62; transition:opacity 0.18s;';
-    svg.appendChild(path);
-    drawn.push({ path, fromEl, toEl });
-  });
+        REFERRAL_LINKS.forEach(({ fromId, toId }) => {
+          const fromEl = container.querySelector(`[data-ref-id="${fromId}"]`)
+          const toEl = container.querySelector(`[data-ref-id="${toId}"]`)
+          if (!fromEl || !toEl) return
+          const fR = fromEl.getBoundingClientRect()
+          const tR = toEl.getBoundingClientRect()
+          const x1 = fR.right - cRect.left
+          const y1 = (fR.top + fR.bottom) / 2 - cRect.top
+          const x2 = tR.left - cRect.left
+          const y2 = (tR.top + tR.bottom) / 2 - cRect.top
+          const hSpan = x2 - x1
+          const d = `M${x1},${y1} C${x1},${y2} ${x2 - hSpan * 0.28},${y2} ${x2},${y2}`
+          const path = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path',
+          )
+          path.setAttribute('d', d)
+          path.setAttribute('stroke', '#a84824')
+          path.setAttribute('stroke-width', '1.3')
+          path.setAttribute('stroke-dasharray', '4 3')
+          path.setAttribute('stroke-linecap', 'round')
+          path.setAttribute('fill', 'none')
+          path.style.cssText = 'opacity:0.62; transition:opacity 0.18s;'
+          svg.appendChild(path)
+          drawn.push({ path, fromEl, toEl })
+        })
 
-  drawn.forEach(({ path, fromEl, toEl }) => {
-    const on  = () => { path.style.opacity = '1'; };
-    const off = () => { path.style.opacity = '0.62'; };
-    [fromEl, toEl].forEach(el => {
-      el.addEventListener('mouseenter', on);
-      el.addEventListener('mouseleave', off);
-      el.addEventListener('focus', on);
-      el.addEventListener('blur',  off);
-    });
-  });
+        drawn.forEach(({ path, fromEl, toEl }) => {
+          const on = () => {
+            path.style.opacity = '1'
+          }
+          const off = () => {
+            path.style.opacity = '0.62'
+          }
+          ;[fromEl, toEl].forEach((el) => {
+            el.addEventListener('mouseenter', on)
+            el.addEventListener('mouseleave', off)
+            el.addEventListener('focus', on)
+            el.addEventListener('blur', off)
+          })
+        })
 
-  if (animate && typeof gsap !== 'undefined') {
-    drawn.forEach(({ path }, i) => {
-      const total = path.getTotalLength();
-      path.style.strokeDasharray  = `${total} ${total}`;
-      path.style.strokeDashoffset = total;
-      gsap.to(path, {
-        strokeDashoffset: 0,
-        duration: 0.55, ease: 'power2.inOut', delay: i * 0.3,
-        onComplete() {
-          path.style.strokeDasharray  = '4 3';
-          path.style.strokeDashoffset = '0';
-        },
-      });
-    });
-  }
-}
+        if (animate && typeof gsap !== 'undefined') {
+          drawn.forEach(({ path }, i) => {
+            const total = path.getTotalLength()
+            path.style.strokeDasharray = `${total} ${total}`
+            path.style.strokeDashoffset = total
+            gsap.to(path, {
+              strokeDashoffset: 0,
+              duration: 0.55,
+              ease: 'power2.inOut',
+              delay: i * 0.3,
+              onComplete() {
+                path.style.strokeDasharray = '4 3'
+                path.style.strokeDashoffset = '0'
+              },
+            })
+          })
+        }
+      }
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    BUILD JOURNEY DOM
    Returns the canvas element appended to #map-body.
    ═══════════════════════════════════════════════════════════ */
-function buildJourneyDOM() {
-  const mapBody = document.getElementById('map-body');
-  mapBody.innerHTML = '';
-  const isMobile = window.innerWidth <= 768;
+      function buildJourneyDOM() {
+        const mapBody = document.getElementById('map-body')
+        mapBody.innerHTML = ''
+        const isMobile = window.innerWidth <= 768
 
-  const canvas = document.createElement('div');
-  canvas.className = 'j-canvas';
+        const canvas = document.createElement('div')
+        canvas.className = 'j-canvas'
 
-  /* Every-stage bar */
-  const everySection = document.createElement('section');
-  everySection.className = 'every-stage-section';
-  everySection.setAttribute('aria-labelledby', 'every-stage-lbl');
-  const everyLbl = document.createElement('p');
-  everyLbl.className = 'section-label';
-  everyLbl.id = 'every-stage-lbl';
-  everyLbl.textContent = 'Available at every stage';
-  everyLbl.style.cssText = 'font-size:0.625rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink2);margin-bottom:0.55rem;';
-  const everyBar = document.createElement('div');
-  everyBar.className = 'every-stage-bar';
-  everyBar.setAttribute('role', 'list');
-  ORGS.filter(o => o.views.includes('journey') && o.stage === 'everyStage').forEach(org => {
-    const noteAttr = org.note ? ` data-note="${org.note}"` : '';
-    const lbl = org.note
-      ? `aria-label="${org.name} - ${org.note}"`
-      : `aria-label="${org.name}"`;
-    everyBar.insertAdjacentHTML('beforeend',
-      mkLink(org.url, 'every-pill', lbl + noteAttr,
-        `<span class="ep-dot ${org.needType}" aria-hidden="true"></span>${org.name}`)
-    );
-  });
-  everySection.appendChild(everyLbl);
-  everySection.appendChild(everyBar);
-  canvas.appendChild(everySection);
+        /* Every-stage bar */
+        const everySection = document.createElement('section')
+        everySection.className = 'every-stage-section'
+        everySection.setAttribute('aria-labelledby', 'every-stage-lbl')
+        const everyLbl = document.createElement('p')
+        everyLbl.className = 'section-label'
+        everyLbl.id = 'every-stage-lbl'
+        everyLbl.textContent = 'Available at every stage'
+        everyLbl.style.cssText =
+          'font-size:0.625rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink2);margin-bottom:0.55rem;'
+        const everyBar = document.createElement('div')
+        everyBar.className = 'every-stage-bar'
+        everyBar.setAttribute('role', 'list')
+        ORGS.filter(
+          (o) => o.views.includes('journey') && o.stage === 'everyStage',
+        ).forEach((org) => {
+          const noteAttr = org.note ? ` data-note="${org.note}"` : ''
+          const lbl = org.note
+            ? `aria-label="${org.name} - ${org.note}"`
+            : `aria-label="${org.name}"`
+          everyBar.insertAdjacentHTML(
+            'beforeend',
+            mkLink(
+              org.url,
+              'every-pill',
+              lbl + noteAttr,
+              `<span class="ep-dot ${org.needType}" aria-hidden="true"></span>${org.name}`,
+            ),
+          )
+        })
+        everySection.appendChild(everyLbl)
+        everySection.appendChild(everyBar)
+        canvas.appendChild(everySection)
 
-  /* Stages section */
-  const stagesSection = document.createElement('section');
-  stagesSection.setAttribute('aria-label', 'Business journey stages');
+        /* Stages section */
+        const stagesSection = document.createElement('section')
+        stagesSection.setAttribute('aria-label', 'Business journey stages')
 
-  /* Desktop grid */
-  const grid = document.createElement('div');
-  grid.className = 'stages-grid';
-  grid.id = 'stages-grid';
+        /* Desktop grid */
+        const grid = document.createElement('div')
+        grid.className = 'stages-grid'
+        grid.id = 'stages-grid'
 
-  /* Awa row */
-  const awaRow = document.createElement('div');
-  awaRow.className = 'awa-row';
-  awaRow.setAttribute('aria-hidden', 'true');
-  const awaBar = document.createElement('div');
-  awaBar.className = 'awa-bar';
-  awaBar.id = 'awa-bar';
-  const awaCoinRow = document.createElement('div');
-  awaCoinRow.className = 'awa-coins';
-  awaCoinRow.id = 'awa-coins';
-  awaRow.appendChild(awaBar);
-  awaRow.appendChild(awaCoinRow);
-  grid.appendChild(awaRow);
-  awaRow.style.cssText = 'grid-column:1/5; grid-row:2;';
+        /* Awa row */
+        const awaRow = document.createElement('div')
+        awaRow.className = 'awa-row'
+        awaRow.setAttribute('aria-hidden', 'true')
+        const awaBar = document.createElement('div')
+        awaBar.className = 'awa-bar'
+        awaBar.id = 'awa-bar'
+        const awaCoinRow = document.createElement('div')
+        awaCoinRow.className = 'awa-coins'
+        awaCoinRow.id = 'awa-coins'
+        awaRow.appendChild(awaBar)
+        awaRow.appendChild(awaCoinRow)
+        grid.appendChild(awaRow)
+        awaRow.style.cssText = 'grid-column:1/5; grid-row:2;'
 
-  STAGES.forEach((stage, i) => {
-    /* Header */
-    const hdr = document.createElement('div');
-    hdr.className = 'stage-hdr';
-    hdr.style.cssText = `grid-column:${stage.col}; grid-row:1;`;
-    hdr.innerHTML = `<p class="col-eyebrow">${stage.num} · ${stage.label.toUpperCase()}</p>
-      <p class="col-question">${stage.question}</p>`;
-    grid.appendChild(hdr);
+        STAGES.forEach((stage, i) => {
+          /* Header */
+          const hdr = document.createElement('div')
+          hdr.className = 'stage-hdr'
+          hdr.style.cssText = `grid-column:${stage.col}; grid-row:1;`
+          hdr.innerHTML = `<p class="col-eyebrow">${stage.num} · ${stage.label.toUpperCase()}</p>
+      <p class="col-question">${stage.question}</p>`
+          grid.appendChild(hdr)
 
-    /* Coin */
-    const coin = document.createElement('div');
-    coin.className = 'stage-coin';
-    coin.setAttribute('role', 'img');
-    coin.setAttribute('aria-label', `Stage ${stage.num}: ${stage.label}`);
-    coin.innerHTML = nihoSVG(i);
-    awaCoinRow.appendChild(coin);
+          /* Coin */
+          const coin = document.createElement('div')
+          coin.className = 'stage-coin'
+          coin.setAttribute('role', 'img')
+          coin.setAttribute('aria-label', `Stage ${stage.num}: ${stage.label}`)
+          coin.innerHTML = nihoSVG(i)
+          awaCoinRow.appendChild(coin)
 
-    /* Body */
-    const stageOrgs = ORGS.filter(o => o.views.includes('journey') && o.stage === stage.id);
-    const items = stageOrgs.map(org => {
-      const ariaLbl  = org.note ? `aria-label="${org.name} - ${org.note}"` : `aria-label="${org.name}"`;
-      const refAttr  = org.refKey ? ` data-ref-id="${org.refKey}"` : '';
-      const noteAttr = org.note   ? ` data-note="${org.note}"`     : '';
-      return `<li class="org-entry"><div class="org-item">
+          /* Body */
+          const stageOrgs = ORGS.filter(
+            (o) => o.views.includes('journey') && o.stage === stage.id,
+          )
+          const items = stageOrgs
+            .map((org) => {
+              const ariaLbl = org.note
+                ? `aria-label="${org.name} - ${org.note}"`
+                : `aria-label="${org.name}"`
+              const refAttr = org.refKey ? ` data-ref-id="${org.refKey}"` : ''
+              const noteAttr = org.note ? ` data-note="${org.note}"` : ''
+              return `<li class="org-entry"><div class="org-item">
         <span class="need-dot ${org.needType}" aria-hidden="true"></span>
         ${mkLink(org.url, `org-pill ${org.needType}`, ariaLbl + refAttr + noteAttr, org.name)}
-      </div></li>`;
-    }).join('');
-    const body = document.createElement('div');
-    body.className = 'stage-body';
-    body.style.cssText = `grid-column:${stage.col}; grid-row:3;`;
-    body.innerHTML = `<p class="stage-nextstep">
+      </div></li>`
+            })
+            .join('')
+          const body = document.createElement('div')
+          body.className = 'stage-body'
+          body.style.cssText = `grid-column:${stage.col}; grid-row:3;`
+          body.innerHTML = `<p class="stage-nextstep">
         <span class="nextstep-eyebrow">Next</span>${stage.nextStep}
       </p>
-      <ul class="org-list" aria-label="Support for ${stage.label} stage">${items}</ul>`;
-    grid.appendChild(body);
-  });
-  stagesSection.appendChild(grid);
+      <ul class="org-list" aria-label="Support for ${stage.label} stage">${items}</ul>`
+          grid.appendChild(body)
+        })
+        stagesSection.appendChild(grid)
 
-  /* Mobile layout */
-  const mobileWrap = document.createElement('div');
-  mobileWrap.id = 'mobile-stages';
-  mobileWrap.className = 'mobile-stages';
-  mobileWrap.setAttribute('aria-label', 'Business journey stages');
-  const river = document.createElement('div');
-  river.className = 'mobile-river';
-  river.setAttribute('aria-hidden', 'true');
-  mobileWrap.appendChild(river);
-  STAGES.forEach((stage, i) => {
-    const stageOrgs = ORGS.filter(o => o.views.includes('journey') && o.stage === stage.id);
-    const items = stageOrgs.map(org => {
-      const ariaLbl  = org.note ? `aria-label="${org.name} - ${org.note}"` : `aria-label="${org.name}"`;
-      const refAttr  = org.refKey ? ` data-ref-id="${org.refKey}"` : '';
-      const noteAttr = org.note   ? ` data-note="${org.note}"`     : '';
-      const refNote  = org.mobileRef
-        ? `<p class="mobile-ref-note" aria-label="Refers to ${org.mobileRef}">
+        /* Mobile layout */
+        const mobileWrap = document.createElement('div')
+        mobileWrap.id = 'mobile-stages'
+        mobileWrap.className = 'mobile-stages'
+        mobileWrap.setAttribute('aria-label', 'Business journey stages')
+        const river = document.createElement('div')
+        river.className = 'mobile-river'
+        river.setAttribute('aria-hidden', 'true')
+        mobileWrap.appendChild(river)
+        STAGES.forEach((stage, i) => {
+          const stageOrgs = ORGS.filter(
+            (o) => o.views.includes('journey') && o.stage === stage.id,
+          )
+          const items = stageOrgs
+            .map((org) => {
+              const ariaLbl = org.note
+                ? `aria-label="${org.name} - ${org.note}"`
+                : `aria-label="${org.name}"`
+              const refAttr = org.refKey ? ` data-ref-id="${org.refKey}"` : ''
+              const noteAttr = org.note ? ` data-note="${org.note}"` : ''
+              const refNote = org.mobileRef
+                ? `<p class="mobile-ref-note" aria-label="Refers to ${org.mobileRef}">
             <span class="m-arrow" aria-hidden="true">&#8594;</span>Refers to ${org.mobileRef}</p>`
-        : '';
-      return `<li class="org-entry"><div class="org-item">
+                : ''
+              return `<li class="org-entry"><div class="org-item">
         <span class="need-dot ${org.needType}" aria-hidden="true"></span>
         ${mkLink(org.url, `org-pill ${org.needType}`, ariaLbl + refAttr + noteAttr, org.name)}
-      </div>${refNote}</li>`;
-    }).join('');
-    const stageEl = document.createElement('div');
-    stageEl.className = 'mobile-stage';
-    stageEl.setAttribute('data-stage', stage.id);
-    stageEl.innerHTML = `
+      </div>${refNote}</li>`
+            })
+            .join('')
+          const stageEl = document.createElement('div')
+          stageEl.className = 'mobile-stage'
+          stageEl.setAttribute('data-stage', stage.id)
+          stageEl.innerHTML = `
       <div class="mobile-coin-cell"></div>
       <div class="mobile-content-cell">
         <div class="mobile-stage-hdr">
@@ -1260,48 +1900,59 @@ function buildJourneyDOM() {
           <p style="font-size:0.8125rem;font-weight:600;color:var(--ink);line-height:1.25;">${stage.question}</p>
         </div>
         <ul class="org-list" aria-label="Support for ${stage.label} stage">${items}</ul>
-      </div>`;
-    const coinCell = stageEl.querySelector('.mobile-coin-cell');
-    const mobileCoin = document.createElement('div');
-    mobileCoin.className = 'stage-coin';
-    mobileCoin.setAttribute('role', 'img');
-    mobileCoin.setAttribute('aria-label', `Stage ${stage.num}: ${stage.label}`);
-    mobileCoin.innerHTML = nihoSVG(i);
-    coinCell.appendChild(mobileCoin);
-    mobileWrap.appendChild(stageEl);
-  });
-  stagesSection.appendChild(mobileWrap);
+      </div>`
+          const coinCell = stageEl.querySelector('.mobile-coin-cell')
+          const mobileCoin = document.createElement('div')
+          mobileCoin.className = 'stage-coin'
+          mobileCoin.setAttribute('role', 'img')
+          mobileCoin.setAttribute(
+            'aria-label',
+            `Stage ${stage.num}: ${stage.label}`,
+          )
+          mobileCoin.innerHTML = nihoSVG(i)
+          coinCell.appendChild(mobileCoin)
+          mobileWrap.appendChild(stageEl)
+        })
+        stagesSection.appendChild(mobileWrap)
 
-  /* Across stages */
-  const acrossSection = document.createElement('div');
-  acrossSection.className = 'across-stages-section';
-  acrossSection.setAttribute('aria-labelledby', 'across-lbl');
-  const acrossLbl = document.createElement('p');
-  acrossLbl.id = 'across-lbl';
-  acrossLbl.style.cssText = 'font-size:0.625rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink2);margin-bottom:0.55rem;';
-  acrossLbl.textContent = 'Available across stages';
-  const acrossWrap = document.createElement('div');
-  acrossWrap.className = 'across-rows-wrap';
-  acrossWrap.id = 'across-rows';
-  ORGS.filter(o => o.views.includes('journey') && o.stage === 'acrossStages').forEach(org => {
-    const row = document.createElement('div');
-    row.className = 'across-row';
-    const dot = `<span class="need-dot ${org.needType}" aria-hidden="true"></span>`;
-    const spanLbl = `aria-label="${org.name} - available from ${org.spanFrom} to ${org.spanTo}"`;
-    row.innerHTML = mkLink(org.url, `across-band ${org.needType} ${org.spanClass}`, spanLbl, dot + org.name);
-    acrossWrap.appendChild(row);
-  });
-  acrossSection.appendChild(acrossLbl);
-  acrossSection.appendChild(acrossWrap);
-  stagesSection.appendChild(acrossSection);
+        /* Across stages */
+        const acrossSection = document.createElement('div')
+        acrossSection.className = 'across-stages-section'
+        acrossSection.setAttribute('aria-labelledby', 'across-lbl')
+        const acrossLbl = document.createElement('p')
+        acrossLbl.id = 'across-lbl'
+        acrossLbl.style.cssText =
+          'font-size:0.625rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink2);margin-bottom:0.55rem;'
+        acrossLbl.textContent = 'Available across stages'
+        const acrossWrap = document.createElement('div')
+        acrossWrap.className = 'across-rows-wrap'
+        acrossWrap.id = 'across-rows'
+        ORGS.filter(
+          (o) => o.views.includes('journey') && o.stage === 'acrossStages',
+        ).forEach((org) => {
+          const row = document.createElement('div')
+          row.className = 'across-row'
+          const dot = `<span class="need-dot ${org.needType}" aria-hidden="true"></span>`
+          const spanLbl = `aria-label="${org.name} - available from ${org.spanFrom} to ${org.spanTo}"`
+          row.innerHTML = mkLink(
+            org.url,
+            `across-band ${org.needType} ${org.spanClass}`,
+            spanLbl,
+            dot + org.name,
+          )
+          acrossWrap.appendChild(row)
+        })
+        acrossSection.appendChild(acrossLbl)
+        acrossSection.appendChild(acrossWrap)
+        stagesSection.appendChild(acrossSection)
 
-  canvas.appendChild(stagesSection);
+        canvas.appendChild(stagesSection)
 
-  /* Legend */
-  const legendSection = document.createElement('section');
-  legendSection.className = 'legend-section';
-  legendSection.setAttribute('aria-label', 'How to read this map');
-  legendSection.innerHTML = `
+        /* Legend */
+        const legendSection = document.createElement('section')
+        legendSection.className = 'legend-section'
+        legendSection.setAttribute('aria-label', 'How to read this map')
+        legendSection.innerHTML = `
     <div class="legend-block">
       <h3>How to read this</h3>
       <ul class="legend-items">
@@ -1335,246 +1986,338 @@ function buildJourneyDOM() {
         <div class="needtype-item" role="listitem"><span class="nt-dot" style="background:var(--pine)" aria-hidden="true"></span>Capability</div>
         <div class="needtype-item" role="listitem"><span class="nt-dot" style="background:var(--ochre)" aria-hidden="true"></span>Networks</div>
       </div>
-    </div>`;
-  canvas.appendChild(legendSection);
+    </div>`
+        canvas.appendChild(legendSection)
 
-  mapBody.appendChild(canvas);
-  return canvas;
-}
+        mapBody.appendChild(canvas)
+        return canvas
+      }
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    BUILD DIRECTORY DOM
    ═══════════════════════════════════════════════════════════ */
-function buildDirectoryDOM() {
-  const mapBody = document.getElementById('map-body');
-  mapBody.innerHTML = '';
+      function buildDirectoryDOM() {
+        const mapBody = document.getElementById('map-body')
+        mapBody.innerHTML = ''
 
-  const container = document.createElement('div');
-  container.className = 'd-container';
-  container.id = 'dir-container';
+        const container = document.createElement('div')
+        container.className = 'd-container'
+        container.id = 'dir-container'
 
-  const awaSpine = document.createElement('div');
-  awaSpine.className = 'd-awa';
-  awaSpine.id = 'awa-bar';
-  awaSpine.setAttribute('aria-hidden', 'true');
-  container.appendChild(awaSpine);
+        const awaSpine = document.createElement('div')
+        awaSpine.className = 'd-awa'
+        awaSpine.id = 'awa-bar'
+        awaSpine.setAttribute('aria-hidden', 'true')
+        container.appendChild(awaSpine)
 
-  CATEGORIES.forEach((cat, idx) => {
-    const orgs = ORGS.filter(o => o.views.includes('directory') && o.categories && o.categories.includes(cat.id));
+        CATEGORIES.forEach((cat, idx) => {
+          const orgs = ORGS.filter(
+            (o) =>
+              o.views.includes('directory') &&
+              o.categories &&
+              o.categories.includes(cat.id),
+          )
 
-    const section = document.createElement('section');
-    section.className = 'd-category';
-    section.setAttribute('aria-labelledby', `cat-lbl-${cat.id}`);
-    section.style.setProperty('--cat-color', `var(${cat.colorVar})`);
+          const section = document.createElement('section')
+          section.className = 'd-category'
+          section.setAttribute('aria-labelledby', `cat-lbl-${cat.id}`)
+          section.style.setProperty('--cat-color', `var(${cat.colorVar})`)
 
-    const coinCol = document.createElement('div');
-    coinCol.className = 'd-coin-col';
-    coinCol.setAttribute('aria-hidden', 'true');
-    const coin = document.createElement('div');
-    coin.className = 'd-coin';
-    coin.innerHTML = nihoSVG(idx);
-    coinCol.appendChild(coin);
+          const coinCol = document.createElement('div')
+          coinCol.className = 'd-coin-col'
+          coinCol.setAttribute('aria-hidden', 'true')
+          const coin = document.createElement('div')
+          coin.className = 'd-coin'
+          coin.innerHTML = nihoSVG(idx)
+          coinCol.appendChild(coin)
 
-    const content = document.createElement('div');
-    content.className = 'd-content';
+          const content = document.createElement('div')
+          content.className = 'd-content'
 
-    const head = document.createElement('div');
-    head.className = 'd-head';
-    const h2 = document.createElement('h2');
-    h2.id = `cat-lbl-${cat.id}`;
-    h2.className = 'd-label';
-    h2.textContent = cat.label;
-    head.appendChild(h2);
-    if (cat.subtitle) {
-      const sub = document.createElement('p');
-      sub.className = 'd-subtitle';
-      sub.textContent = cat.subtitle;
-      head.appendChild(sub);
-    }
+          const head = document.createElement('div')
+          head.className = 'd-head'
+          const h2 = document.createElement('h2')
+          h2.id = `cat-lbl-${cat.id}`
+          h2.className = 'd-label'
+          h2.textContent = cat.label
+          head.appendChild(h2)
+          if (cat.subtitle) {
+            const sub = document.createElement('p')
+            sub.className = 'd-subtitle'
+            sub.textContent = cat.subtitle
+            head.appendChild(sub)
+          }
 
-    const ul = document.createElement('ul');
-    ul.className = 'd-org-list';
-    ul.setAttribute('role', 'list');
-    orgs.forEach(org => {
-      const li = document.createElement('li');
-      li.className = 'd-org-item';
-      if (org.url) {
-        const a = document.createElement('a');
-        a.className = 'd-org-link';
-        a.href = org.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = org.name;
-        if (org.note) a.setAttribute('data-note', org.note);
-        li.appendChild(a);
-      } else {
-        const span = document.createElement('span');
-        span.className = 'd-org-nolink';
-        span.textContent = org.name;
-        if (org.note) span.setAttribute('data-note', org.note);
-        li.appendChild(span);
+          const ul = document.createElement('ul')
+          ul.className = 'd-org-list'
+          ul.setAttribute('role', 'list')
+          orgs.forEach((org) => {
+            const li = document.createElement('li')
+            li.className = 'd-org-item'
+            if (org.url) {
+              const a = document.createElement('a')
+              a.className = 'd-org-link'
+              a.href = org.url
+              a.target = '_blank'
+              a.rel = 'noopener noreferrer'
+              a.textContent = org.name
+              if (org.note) a.setAttribute('data-note', org.note)
+              li.appendChild(a)
+            } else {
+              const span = document.createElement('span')
+              span.className = 'd-org-nolink'
+              span.textContent = org.name
+              if (org.note) span.setAttribute('data-note', org.note)
+              li.appendChild(span)
+            }
+            ul.appendChild(li)
+          })
+
+          content.appendChild(head)
+          content.appendChild(ul)
+
+          const node = document.createElement('div')
+          node.className = 'd-node'
+          node.appendChild(coinCol)
+          node.appendChild(content)
+          section.appendChild(node)
+          container.appendChild(section)
+        })
+
+        mapBody.appendChild(container)
+        return container
       }
-      ul.appendChild(li);
-    });
 
-    content.appendChild(head);
-    content.appendChild(ul);
-
-    const node = document.createElement('div');
-    node.className = 'd-node';
-    node.appendChild(coinCol);
-    node.appendChild(content);
-    section.appendChild(node);
-    container.appendChild(section);
-  });
-
-  mapBody.appendChild(container);
-  return container;
-}
-
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════════════════════════════ */
-function animateJourney() {
-  const isMobile = window.innerWidth <= 768;
+      function animateJourney() {
+        const isMobile = window.innerWidth <= 768
 
-  if (!isMobile) {
-    gsap.set('#awa-bar',                        { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set('#stages-grid .stage-coin',        { opacity: 0, scale: 0.85 });
-    gsap.set('#stages-grid .stage-hdr, #stages-grid .stage-nextstep, #stages-grid .org-entry',
-                                                { opacity: 0, y: 8 });
-    gsap.set('.every-stage-section, .across-stages-section, .legend-section',
-                                                { opacity: 0 });
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-    tl.to('#awa-bar', { scaleX: 1, duration: 1.2 });
-    tl.fromTo('#stages-grid .stage-coin',
-      { opacity: 0, scale: 0.85 },
-      { opacity: 1, scale: 1, duration: 0.4, stagger: 0.25 }, 0.15);
-    tl.to('#stages-grid .stage-hdr',
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.07, clearProps: 'transform' }, '+=0.08');
-    tl.to('#stages-grid .stage-nextstep, #stages-grid .org-entry',
-      { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, clearProps: 'transform' }, '-=0.28');
-    tl.call(() => { drawReferralArrows(true); }, null, '+=0.12');
-    tl.to('.every-stage-section', { opacity: 1, duration: 0.5 }, '+=0.55');
-    tl.to('.across-stages-section, .legend-section',
-      { opacity: 1, duration: 0.5, stagger: 0.12 }, '-=0.25');
-  } else {
-    const river = document.querySelector('#mobile-stages .mobile-river');
-    if (river) {
-      gsap.fromTo(river,
-        { scaleY: 0, transformOrigin: 'top center' },
-        { scaleY: 1, duration: 0.85, ease: 'power2.out' });
-    }
-    if ('IntersectionObserver' in window) {
-      const stages = document.querySelectorAll('.mobile-stage');
-      stages.forEach(s => {
-        gsap.set(s.querySelector('.mobile-coin-cell'),    { opacity: 0, scale: 0.85 });
-        gsap.set(s.querySelector('.mobile-content-cell'), { opacity: 0, y: 12 });
-      });
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const coin    = entry.target.querySelector('.mobile-coin-cell');
-          const content = entry.target.querySelector('.mobile-content-cell');
-          gsap.to(coin,    { opacity: 1, scale: 1,  duration: 0.4,  ease: 'power2.out', delay: 0.05 });
-          gsap.to(content, { opacity: 1, y: 0, clearProps: 'transform', duration: 0.45, ease: 'power2.out' });
-          obs.unobserve(entry.target);
-        });
-      }, { threshold: 0.12 });
-      stages.forEach(s => obs.observe(s));
-    }
-  }
-}
+        if (!isMobile) {
+          gsap.set('#awa-bar', { scaleX: 0, transformOrigin: 'left center' })
+          gsap.set('#stages-grid .stage-coin', { opacity: 0, scale: 0.85 })
+          gsap.set(
+            '#stages-grid .stage-hdr, #stages-grid .stage-nextstep, #stages-grid .org-entry',
+            { opacity: 0, y: 8 },
+          )
+          gsap.set(
+            '.every-stage-section, .across-stages-section, .legend-section',
+            { opacity: 0 },
+          )
+          const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
+          tl.to('#awa-bar', { scaleX: 1, duration: 1.2 })
+          tl.fromTo(
+            '#stages-grid .stage-coin',
+            { opacity: 0, scale: 0.85 },
+            { opacity: 1, scale: 1, duration: 0.4, stagger: 0.25 },
+            0.15,
+          )
+          tl.to(
+            '#stages-grid .stage-hdr',
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.07,
+              clearProps: 'transform',
+            },
+            '+=0.08',
+          )
+          tl.to(
+            '#stages-grid .stage-nextstep, #stages-grid .org-entry',
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.35,
+              stagger: 0.04,
+              clearProps: 'transform',
+            },
+            '-=0.28',
+          )
+          tl.call(
+            () => {
+              drawReferralArrows(true)
+            },
+            null,
+            '+=0.12',
+          )
+          tl.to('.every-stage-section', { opacity: 1, duration: 0.5 }, '+=0.55')
+          tl.to(
+            '.across-stages-section, .legend-section',
+            { opacity: 1, duration: 0.5, stagger: 0.12 },
+            '-=0.25',
+          )
+        } else {
+          const river = document.querySelector('#mobile-stages .mobile-river')
+          if (river) {
+            gsap.fromTo(
+              river,
+              { scaleY: 0, transformOrigin: 'top center' },
+              { scaleY: 1, duration: 0.85, ease: 'power2.out' },
+            )
+          }
+          if ('IntersectionObserver' in window) {
+            const stages = document.querySelectorAll('.mobile-stage')
+            stages.forEach((s) => {
+              gsap.set(s.querySelector('.mobile-coin-cell'), {
+                opacity: 0,
+                scale: 0.85,
+              })
+              gsap.set(s.querySelector('.mobile-content-cell'), {
+                opacity: 0,
+                y: 12,
+              })
+            })
+            const obs = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (!entry.isIntersecting) return
+                  const coin = entry.target.querySelector('.mobile-coin-cell')
+                  const content = entry.target.querySelector(
+                    '.mobile-content-cell',
+                  )
+                  gsap.to(coin, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: 'power2.out',
+                    delay: 0.05,
+                  })
+                  gsap.to(content, {
+                    opacity: 1,
+                    y: 0,
+                    clearProps: 'transform',
+                    duration: 0.45,
+                    ease: 'power2.out',
+                  })
+                  obs.unobserve(entry.target)
+                })
+              },
+              { threshold: 0.12 },
+            )
+            stages.forEach((s) => obs.observe(s))
+          }
+        }
+      }
 
-function animateDirectory() {
-  gsap.fromTo('#awa-bar',
-    { scaleY: 0, transformOrigin: 'top center' },
-    { scaleY: 1, duration: 1.2, ease: 'power2.out' });
-  if ('IntersectionObserver' in window) {
-    const cats = document.querySelectorAll('.d-category');
-    cats.forEach(c => {
-      gsap.set(c.querySelector('.d-coin'),    { opacity: 0, scale: 0.85 });
-      gsap.set(c.querySelector('.d-content'), { opacity: 0, x: -10 });
-    });
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const coin    = entry.target.querySelector('.d-coin');
-        const content = entry.target.querySelector('.d-content');
-        gsap.to(coin,    { opacity: 1, scale: 1,  duration: 0.4,  ease: 'power2.out' });
-        gsap.to(content, { opacity: 1, x: 0, clearProps: 'transform', duration: 0.45, ease: 'power2.out', delay: 0.07 });
-        obs.unobserve(entry.target);
-      });
-    }, { threshold: 0.08 });
-    cats.forEach(c => obs.observe(c));
-  }
-}
+      function animateDirectory() {
+        gsap.fromTo(
+          '#awa-bar',
+          { scaleY: 0, transformOrigin: 'top center' },
+          { scaleY: 1, duration: 1.2, ease: 'power2.out' },
+        )
+        if ('IntersectionObserver' in window) {
+          const cats = document.querySelectorAll('.d-category')
+          cats.forEach((c) => {
+            gsap.set(c.querySelector('.d-coin'), { opacity: 0, scale: 0.85 })
+            gsap.set(c.querySelector('.d-content'), { opacity: 0, x: -10 })
+          })
+          const obs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return
+                const coin = entry.target.querySelector('.d-coin')
+                const content = entry.target.querySelector('.d-content')
+                gsap.to(coin, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: 'power2.out',
+                })
+                gsap.to(content, {
+                  opacity: 1,
+                  x: 0,
+                  clearProps: 'transform',
+                  duration: 0.45,
+                  ease: 'power2.out',
+                  delay: 0.07,
+                })
+                obs.unobserve(entry.target)
+              })
+            },
+            { threshold: 0.08 },
+          )
+          cats.forEach((c) => obs.observe(c))
+        }
+      }
 
-/* ═══════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════
    VIEW SWITCHER
    ═══════════════════════════════════════════════════════════ */
-const prefersReducedMotion =
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches
 
-let activeView = 'directory';
-let _resizeTimer = null;
+      let activeView = 'directory'
+      let _resizeTimer = null
 
-function switchView(newView) {
-  if (newView === activeView && document.getElementById('map-body').children.length > 0) return;
-  activeView = newView;
+      function switchView(newView) {
+        if (
+          newView === activeView &&
+          document.getElementById('map-body').children.length > 0
+        )
+          return
+        activeView = newView
 
-  document.querySelectorAll('.toggle-btn').forEach(btn => {
-    const isActive = btn.dataset.view === newView;
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-  });
+        document.querySelectorAll('.toggle-btn').forEach((btn) => {
+          const isActive = btn.dataset.view === newView
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false')
+        })
 
-  if (newView === 'directory') {
-    buildDirectoryDOM();
-    if (prefersReducedMotion) {
-      if (typeof gsap !== 'undefined') {
-        gsap.set('#awa-bar', { clearProps: 'transform' });
-        gsap.set('.d-coin, .d-content', { clearProps: 'opacity,transform' });
+        if (newView === 'directory') {
+          buildDirectoryDOM()
+          if (prefersReducedMotion) {
+            if (typeof gsap !== 'undefined') {
+              gsap.set('#awa-bar', { clearProps: 'transform' })
+              gsap.set('.d-coin, .d-content', {
+                clearProps: 'opacity,transform',
+              })
+            }
+          } else {
+            requestAnimationFrame(() => animateDirectory())
+          }
+        } else {
+          buildJourneyDOM()
+          if (prefersReducedMotion) {
+            if (typeof gsap !== 'undefined') {
+              gsap.set('#awa-bar', { clearProps: 'transform' })
+              gsap.set('.stage-coin, .stage-hdr, .stage-nextstep, .org-entry', {
+                clearProps: 'opacity,transform',
+              })
+              gsap.set(
+                '.every-stage-section, .across-stages-section, .legend-section',
+                { clearProps: 'opacity' },
+              )
+              gsap.set('.mobile-coin-cell, .mobile-content-cell', {
+                clearProps: 'opacity,transform',
+              })
+            }
+            drawReferralArrows(false)
+          } else {
+            /* Double-rAF: wait for full layout before measuring for arrows */
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => animateJourney())
+            })
+          }
+        }
       }
-    } else {
-      requestAnimationFrame(() => animateDirectory());
-    }
-  } else {
-    buildJourneyDOM();
-    if (prefersReducedMotion) {
-      if (typeof gsap !== 'undefined') {
-        gsap.set('#awa-bar', { clearProps: 'transform' });
-        gsap.set('.stage-coin, .stage-hdr, .stage-nextstep, .org-entry',
-          { clearProps: 'opacity,transform' });
-        gsap.set('.every-stage-section, .across-stages-section, .legend-section',
-          { clearProps: 'opacity' });
-        gsap.set('.mobile-coin-cell, .mobile-content-cell',
-          { clearProps: 'opacity,transform' });
-      }
-      drawReferralArrows(false);
-    } else {
-      /* Double-rAF: wait for full layout before measuring for arrows */
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => animateJourney());
-      });
-    }
-  }
-}
 
-/* Toggle button wiring */
-document.querySelectorAll('.toggle-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchView(btn.dataset.view));
-});
+      /* Toggle button wiring */
+      document.querySelectorAll('.toggle-btn').forEach((btn) => {
+        btn.addEventListener('click', () => switchView(btn.dataset.view))
+      })
 
-/* Resize: snap arrows when journey is active */
-window.addEventListener('resize', () => {
-  clearTimeout(_resizeTimer);
-  _resizeTimer = setTimeout(() => {
-    if (activeView === 'journey') drawReferralArrows(false);
-  }, 120);
-});
+      /* Resize: snap arrows when journey is active */
+      window.addEventListener('resize', () => {
+        clearTimeout(_resizeTimer)
+        _resizeTimer = setTimeout(() => {
+          if (activeView === 'journey') drawReferralArrows(false)
+        }, 120)
+      })
 
-/* Initial render */
-switchView('directory');
-</script>
-</body>
+      /* Initial render */
+      switchView('directory')
+    </script>
+  </body>
 </html>
